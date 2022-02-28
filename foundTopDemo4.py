@@ -1,5 +1,6 @@
 #修改整体代码，实现规范局部刷新
 from neo4j import GraphDatabase
+import numpy as np
 
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
@@ -69,19 +70,31 @@ def GetRanking():
                                   'author_major', 'score'])
     msgview = msgdf.sort_values(by='score', axis=0, ascending=False).head(10)  # axis=1表示对列操作,ascending=False表示降序排列
     print(msgview)
-    # print('1',msgview.to_json()) #将dict转成str
-    # print('2',msgview.to_json(orient='index'))
-    print('3',msgview.to_json(orient='columns'))
-    print('4', msgview.to_dict())
-    # print('4', msgview.to_json(orient='records'))
-    print('5',msgview["author_id"])
-    print('6',msgview["author_id"][32])
-    # print('7',jsonify(msgview.to_dict()))
-    data=msgview.to_dict()
-    print(data)
 
-    return jsonify(data)#是否需要ensure_ascii=False?
+    resList=[]#需要的数据有：编号、作者、单位、专业、分数
+    for i,j in msgview.iterrows():
+        dic={'author_id':j.author_id,'author_name':j.author_name,'author_college':j.author_college,'author_major':j.author_major,'score':j.score}
+        resList.append(dic)
+    print(resList)
+
+    # print('1',msgview.to_json()) #将dict转成str
+    # print('2',msgview.to_json(orient='index'))#将最外面的大括号变成方括号即是我们需要转化的json
+    # print('3',msgview.to_json(orient='columns'))
+    # print('4', msgview.to_dict())
+    # print('4', msgview.to_json(orient='records'))
+    # print('5',msgview["author_id"])
+    # print('6',msgview["author_id"][32])
+    # print('7',jsonify(msgview.to_dict()))
+    # data=msgview.to_dict()
+
+    # 列表转数组是np.array(a),a是数组
+    # return jsonify(data)#是否需要ensure_ascii=False?
+    # return msgview.to_json(orient='index')#返回的数据undefine
     # return jsonify({'ss':"sjhds"})
+
+    # return jsonify([{"author_id":"60768","author_name":"\u9ec4\u5065","author_college":"\u6c5f\u82cf\u7701\u82cf\u5dde\u5e02\u6c5f\u5357\u822a\u5929\u673a\u7535\u5de5\u4e1a\u516c\u53f8","author_major":"\u6750\u6599\u79d1\u5b66;\u6b66\u5668\u5de5\u4e1a\u4e0e\u519b\u4e8b\u6280\u672f;\u6c7d\u8f66\u5de5\u4e1a;","score":"76.56399726214921"}])
+    return jsonify(resList)
+
 
 if __name__ == '__main__':
     app.run(debug = True)

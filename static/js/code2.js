@@ -13,20 +13,19 @@ $(function () {
             },
             function (data) {
                 // $("#output").text(data.ss)
-                $("#output").text(data('author_id'))
-                // $(data).each(
-                //     function (i,values){
-                //         //i是index，values是每一行的数据
-                //         $("#toplist").append(
-                //             "<tr><td>"+values.bookid+"</td>"
-                //             +"<td><a href='https://start.firefoxchina.cn/'>"+values.bookname+"</ta></td>"
-                //             +"<td>"+values.price+"</td>"
-                //             +"<td>"+values.author+"</td>"
-                //             +"<td>"+values.pic+"</td>"
-                //             +"<td>"+values.publish+"</td></tr>"
-                //         )
-                //     }
-                // )
+                // $("#output").text(data('author_id'))
+                $(data).each(
+                    function (i,values){
+                        //i是index，values是每一行的数据
+                        $("#toplist").append(
+                            "<tr><td>"+values.author_id+"</td>"
+                            +"<td><a href='https://start.firefoxchina.cn/'>"+values.author_name+"</ta></td>"
+                            +"<td>"+values.author_college+"</td>"
+                            +"<td>"+values.author_major+"</td>"
+                            +"<td>"+values.score+"</td></tr>"
+                        )
+                    }
+                )
             }, 'json');
     });
 });
