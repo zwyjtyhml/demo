@@ -10,6 +10,8 @@
     <script src="/static/js/code2.js"></script>
 </head>
 <body>
+
+<div id="findtop">
 <h2>行业考察指标比例设置，即指标的看重程度</h2>
 <h3>每个指标输入范围为1-10分</h3>
 <!--  <div>-->
@@ -51,11 +53,6 @@
     <input class="btn" type="submit" id="submitB1" name="submit" value="提交">  <!-- 提交按钮 -->
     <p name="output" id="output"></p>
 
-    <p>
-        <!--    {{d_html_text|safe}}-->
-
-    </p>
-
     <table class="bordered">
         <thead>
         <tr>
@@ -66,10 +63,7 @@
             <th>分数</th>
         </tr>
         </thead>
-
         <tbody id="toplist"></tbody>
-
-
         <!--    <tr>-->
         <!--    <td>1</td>-->
         <!--    <td>The Shawshank Redemption</td>-->
@@ -77,11 +71,10 @@
         <!--    <td>The Shawshank Redemption</td>-->
         <!--    <td>1994</td>-->
         <!--    </tr>-->
-
-
     </table>
 
 
+</div>
 </div>
 
 </body>

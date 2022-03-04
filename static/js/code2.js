@@ -14,6 +14,7 @@ $(function () {
             function (data) {
                 // $("#output").text(data.ss)
                 // $("#output").text(data('author_id'))
+                $("#toplist").html("");//第二次提交需要清空表格数据
                 $(data).each(
                     function (i,values){
                         //i是index，values是每一行的数据
