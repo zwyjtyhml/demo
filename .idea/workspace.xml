@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="表格数据导入">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/neo4jWeb3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neo4jWeb3.iml" afterDir="false" />
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="寻找前十名基本完成">
+      <change afterPath="$PROJECT_DIR$/static/js/search_achieve.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/search_achieve.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/code2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/code2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/foundTop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/foundTop.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/文件操作.md" beforeDir="false" afterPath="$PROJECT_DIR$/文件操作.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/createP2.py" beforeDir="false" afterPath="$PROJECT_DIR$/createP2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -27,6 +34,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -37,7 +45,29 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Python.createP2">
+    <configuration name="createP2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="neo4jWeb3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/createP2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="foundTopDemo4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neo4jWeb3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -62,6 +92,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.createP2" />
         <item itemvalue="Python.foundTopDemo4" />
       </list>
     </recent_temporary>
@@ -80,7 +111,10 @@
       <workItem from="1646095138647" duration="156000" />
       <workItem from="1646129501394" duration="1090000" />
       <workItem from="1646133191818" duration="5000" />
-      <workItem from="1646388772266" duration="2708000" />
+      <workItem from="1646388772266" duration="5111000" />
+      <workItem from="1646552255951" duration="2506000" />
+      <workItem from="1646651853757" duration="117000" />
+      <workItem from="1646651982466" duration="2457000" />
     </task>
     <task id="LOCAL-00001" summary="表格数据导入">
       <created>1646052971994</created>
@@ -96,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646095169883</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="寻找前十名基本完成">
+      <created>1646392472632</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1646392472632</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -116,9 +157,10 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="表格数据导入" />
-    <option name="LAST_COMMIT_MESSAGE" value="表格数据导入" />
+    <MESSAGE value="寻找前十名基本完成" />
+    <option name="LAST_COMMIT_MESSAGE" value="寻找前十名基本完成" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1646389355617" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1646394420423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

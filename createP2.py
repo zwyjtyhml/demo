@@ -25,7 +25,7 @@ def buildEdges(relationRecord): #构建web显示边
 
 @app.route('/')#建立路由，指向网页
 def index():
-    return render_template('index.html')
+    return render_template('search_achieve.html')
 
 
 # @app.route('/search', methods=['POST'])

@@ -30,7 +30,7 @@ input[type=submit]{
 
 /*增加表格的样式*/
 body {
-    width: 600px;
+    width: 1000px;/*会同时影响foundTop.html和search_achieve.html*/
     margin: 40px auto;
     font-family: 'trebuchet MS', 'Lucida sans', Arial;
     font-size: 14px;
