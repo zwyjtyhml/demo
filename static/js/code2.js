@@ -19,8 +19,8 @@ $(function () {
                     function (i,values){
                         //i是index，values是每一行的数据
                         $("#toplist").append(
-                            "<tr><td>"+values.author_id+"</td>"
-                            +"<td><a href='https://start.firefoxchina.cn/'>"+values.author_name+"</ta></td>"
+                            "<tr><td>"+values.author_id+"</td>"//%E6%9C%B1%E7%A3%8A代表朱磊
+                            +"<td><a href='http://localhost:5000/search_achieve?name="+values.author_name+"'>"+values.author_name+"</ta></td>"
                             +"<td>"+values.author_college+"</td>"
                             +"<td>"+values.author_major+"</td>"
                             +"<td>"+values.score+"</td></tr>"

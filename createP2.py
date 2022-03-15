@@ -75,6 +75,7 @@ def get_graph():
 
         nodes = list(map(buildNodes, nodeList))
         edges= list(map(buildEdges,edgeList))
+        print(nodes)
 
     return jsonify(elements = {"nodes": nodes, "edges": edges})
 

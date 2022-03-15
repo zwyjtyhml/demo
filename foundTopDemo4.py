@@ -5,6 +5,7 @@ import numpy as np
 from flask import Flask, render_template, request, jsonify
 import pandas as pd
 from app.calcuscore import CalcuScore
+from app.build_map import BuildMap
 
 driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "current-nebula-forum-hope-bagel-3878")) #认证连接数据库
 app = Flask(__name__)
@@ -94,6 +95,50 @@ def GetRanking():
 
     # return jsonify([{"author_id":"60768","author_name":"\u9ec4\u5065","author_college":"\u6c5f\u82cf\u7701\u82cf\u5dde\u5e02\u6c5f\u5357\u822a\u5929\u673a\u7535\u5de5\u4e1a\u516c\u53f8","author_major":"\u6750\u6599\u79d1\u5b66;\u6b66\u5668\u5de5\u4e1a\u4e0e\u519b\u4e8b\u6280\u672f;\u6c7d\u8f66\u5de5\u4e1a;","score":"76.56399726214921"}])
     return jsonify(resList)
+
+@app.route('/search_achieve',methods=['GET'])
+def search_achieve():
+    # person = request.form['sentence']
+    person = request.args.get('name')
+    personn = str(person)
+    print(personn)
+
+    with driver.session() as session:
+        results = session.run('MATCH (p1{name:"' + personn + '"})-[r1:拥有]->(m) RETURN p1,m,r1')
+        nodeList = []
+        edgeList = []
+        # 用for对每一个搜索到的三元组进行处理
+        for result in results:
+            print(result[0])
+            # print(result[0]._id)#打印节点id或者label
+            print(result[0]._properties['name'])  # properties是一个字典 #打印属性中的name
+
+            nodeList.append(result[0])
+            # print(result[1])
+            nodeList.append(result[1])
+            # print(nodeList)
+            # 将节点去重排列
+            nodeList = list(set(nodeList))
+            # print(nodeList)
+            print(result[2])  # 打印关系
+            edgeList.append(result[2])
+
+        # 对nodelist中的每个节点进行查找操作
+        for nodeitem in nodeList:
+            # 找出该节点的name_node
+            # print(nodeitem._properties['name'])
+            if nodeitem._labels == "article":
+                results_node = session.run(
+                    'MATCH (m1{title:"' + nodeitem._properties['title'] + '"})-[r2:关联]->(m2) RETURN m1,m2,r2')
+                print(results_node)
+                for result_node in results_node:
+                    edgeList.append(result_node[2])
+
+        nodes = list(map(BuildMap.buildNodes, nodeList))
+        edges = list(map(BuildMap.buildEdges, edgeList))
+        print(nodes)
+
+    return jsonify(elements={"nodes": nodes, "edges": edges})
 
 if __name__ == '__main__':
     app.run(debug = True)

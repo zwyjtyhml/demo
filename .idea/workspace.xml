@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="寻找前十名基本完成">
-      <change afterPath="$PROJECT_DIR$/static/js/search_achieve.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/search_achieve.html" afterDir="false" />
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="查询作者专利文章节点代码，有返回值但是网页不刷新展示。">
+      <change afterPath="$PROJECT_DIR$/app/build_map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/createP2.py" beforeDir="false" afterPath="$PROJECT_DIR$/createP2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foundTopDemo4.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundTopDemo4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/code2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/code2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/foundTop.js" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +46,12 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
-  <component name="RunManager" selected="Python.createP2">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\program files\pycharm\neo4jWeb3\app" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.foundTopDemo4">
     <configuration name="createP2" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neo4jWeb3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -92,8 +98,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.createP2" />
         <item itemvalue="Python.foundTopDemo4" />
+        <item itemvalue="Python.createP2" />
       </list>
     </recent_temporary>
   </component>
@@ -114,7 +120,9 @@
       <workItem from="1646388772266" duration="5111000" />
       <workItem from="1646552255951" duration="2506000" />
       <workItem from="1646651853757" duration="117000" />
-      <workItem from="1646651982466" duration="2457000" />
+      <workItem from="1646651982466" duration="2777000" />
+      <workItem from="1646736256797" duration="8806000" />
+      <workItem from="1646996221994" duration="3869000" />
     </task>
     <task id="LOCAL-00001" summary="表格数据导入">
       <created>1646052971994</created>
@@ -137,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646392472632</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="查询作者专利文章节点代码，有返回值但是网页不刷新展示。">
+      <created>1646655804614</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1646655804614</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -158,9 +173,11 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="表格数据导入" />
     <MESSAGE value="寻找前十名基本完成" />
-    <option name="LAST_COMMIT_MESSAGE" value="寻找前十名基本完成" />
+    <MESSAGE value="查询作者专利文章节点代码，有返回值但是网页不刷新展示。" />
+    <option name="LAST_COMMIT_MESSAGE" value="查询作者专利文章节点代码，有返回值但是网页不刷新展示。" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1646394420423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1646998323751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$createP2.coverage" NAME="createP2 Coverage Results" MODIFIED="1646739988944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
