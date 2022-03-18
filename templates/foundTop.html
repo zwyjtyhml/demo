@@ -12,70 +12,74 @@
 <body>
 
 <div id="findtop">
-<h2>行业考察指标比例设置，即指标的看重程度</h2>
-<h3>每个指标输入范围为1-10分</h3>
-<!--  <div>-->
-<!--      <input type = "text" name="input_sentence" id="input_sentence" >-->
-<!--    <p name="output_sentence" id="output_sentence"></p>-->
-<!--    <button id="button">提交</button>-->
-<!--  </div>-->
-<div>
-    <!-- form表单（这里直接吧form标签去掉了，不然提交的请求为get，405报错） 指定提交方法为 POST:method="POST" -->
-    <label for="research_dir">领域或主题：</label>
-    <input type="text" name="research_dir" id="research_dir" value="微生物"><br>
-    <label for="article_ra">发表文献数目：</label>
-    <!--        <input type="range"  min="0" max="10" step="1" value="" />-->
-    <!-- 上面代码意思是：input元素类型为输入数字控件;min属性指定最小值限制，max属性指定最大值限制，step属性规定合法数字间隔，value属性规定默认值-->
-    <input type="range" name="article_ra" id="article_ra" max="10" min="0"
-           onchange="document.getElementById('show_article_ra').innerHTML=value">
-    <span id="show_article_ra"></span><br>
-    <label for="article_time">发表文献年代：</label>
-    <input type="range" name="article_time" id="article_time" max="10" min="0"
-           onchange="document.getElementById('show_article_time').innerHTML=value">
-    <span id="show_article_time"></span><br>
-    <label for="patent_ra">发表专利数量：</label>
-    <!--    <input type="text" name="patent_num" id="patent_num"><br> -->
-    <input type="range" name="patent_ra" id="patent_ra" max="10" min="0"
-           onchange="document.getElementById('show_patent_ra').innerHTML=value">
-    <span id="show_patent_ra"></span><br>
-    <label for="referenced_count">文献引用数量：</label>
-    <input type="range" name="referenced_count" id="referenced_count" max="10" min="0"
-           onchange="document.getElementById('show_referenced_count').innerHTML=value">
-    <span id="show_referenced_count"></span><br>
-    <label for="downloaded_count">文献下载数量：</label>
-    <input type="range" name="downloaded_count" id="downloaded_count" max="10" min="0"
-           onchange="document.getElementById('show_downloaded_count').innerHTML=value">
-    <span id="show_downloaded_count"></span><br>
-    <label for="pa_convertion_rate">专利转化率：</label>
-    <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0"
-           onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">
-    <span id="show_pa_convertion_rate"></span><br>
-    <input class="btn" type="submit" id="submitB1" name="submit" value="提交">  <!-- 提交按钮 -->
-    <p name="output" id="output"></p>
+    <h2>行业考察指标比例设置，即指标的看重程度</h2>
+    <h3>每个指标输入范围为1-10分</h3>
+    <!--  <div>-->
+    <!--      <input type = "text" name="input_sentence" id="input_sentence" >-->
+    <!--    <p name="output_sentence" id="output_sentence"></p>-->
+    <!--    <button id="button">提交</button>-->
+    <!--  </div>-->
+    <div>
+        <!-- form表单（这里直接吧form标签去掉了，不然提交的请求为get，405报错） 指定提交方法为 POST:method="POST" -->
+        <label for="research_dir">领域或主题：</label>
+        <input type="text" name="research_dir" id="research_dir" value="微生物"><br>
+        <label for="article_ra">发表文献数目：</label>
+        <!--        <input type="range"  min="0" max="10" step="1" value="" />-->
+        <!-- 上面代码意思是：input元素类型为输入数字控件;min属性指定最小值限制，max属性指定最大值限制，step属性规定合法数字间隔，value属性规定默认值-->
+        <input type="range" name="article_ra" id="article_ra" max="10" min="0"
+               onchange="document.getElementById('show_article_ra').innerHTML=value">
+        <span id="show_article_ra"></span><br>
+        <label for="article_time">发表文献年代：</label>
+        <input type="range" name="article_time" id="article_time" max="10" min="0"
+               onchange="document.getElementById('show_article_time').innerHTML=value">
+        <span id="show_article_time"></span><br>
+        <label for="patent_ra">发表专利数量：</label>
+        <!--    <input type="text" name="patent_num" id="patent_num"><br> -->
+        <input type="range" name="patent_ra" id="patent_ra" max="10" min="0"
+               onchange="document.getElementById('show_patent_ra').innerHTML=value">
+        <span id="show_patent_ra"></span><br>
+        <label for="referenced_count">文献引用数量：</label>
+        <input type="range" name="referenced_count" id="referenced_count" max="10" min="0"
+               onchange="document.getElementById('show_referenced_count').innerHTML=value">
+        <span id="show_referenced_count"></span><br>
+        <label for="downloaded_count">文献下载数量：</label>
+        <input type="range" name="downloaded_count" id="downloaded_count" max="10" min="0"
+               onchange="document.getElementById('show_downloaded_count').innerHTML=value">
+        <span id="show_downloaded_count"></span><br>
+        <label for="pa_convertion_rate">专利转化率：</label>
+        <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0"
+               onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">
+        <span id="show_pa_convertion_rate"></span><br>
+        <input class="btn" type="submit" id="submitB1" name="submit" value="提交">  <!-- 提交按钮 -->
+        <p name="output" id="output"></p>
 
-    <table class="bordered">
-        <thead>
-        <tr>
-            <th>编号</th>
-            <th>作者</th>
-            <th>单位</th>
-            <th>专业</th>
-            <th>分数</th>
-        </tr>
-        </thead>
-        <tbody id="toplist"></tbody>
-        <!--    <tr>-->
-        <!--    <td>1</td>-->
-        <!--    <td>The Shawshank Redemption</td>-->
-        <!--    <td>The Shawshank Redemption</td>-->
-        <!--    <td>The Shawshank Redemption</td>-->
-        <!--    <td>1994</td>-->
-        <!--    </tr>-->
-    </table>
+        <table class="bordered">
+            <thead>
+            <tr>
+                <th>编号</th>
+                <th>作者</th>
+                <th>单位</th>
+                <th>专业</th>
+                <th>分数</th>
+            </tr>
+            </thead>
+            <tbody id="toplist"></tbody>
+            <!--    <tr>-->
+            <!--    <td>1</td>-->
+            <!--    <td>The Shawshank Redemption</td>-->
+            <!--    <td>The Shawshank Redemption</td>-->
+            <!--    <td>The Shawshank Redemption</td>-->
+            <!--    <td>1994</td>-->
+            <!--    </tr>-->
+        </table>
 
 
+    </div>
 </div>
-</div>
+
+<!--<div id="findachieve">-->
+<!--    <h2>作者的文章和专利详情</h2>-->
+<!--</div>-->
 
 </body>
 </html>

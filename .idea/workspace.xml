@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="查询作者专利文章节点代码，有返回值但是网页不刷新展示。">
-      <change afterPath="$PROJECT_DIR$/app/build_map.py" afterDir="false" />
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="联系查询人物专利和top10页面">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/createP2.py" beforeDir="false" afterPath="$PROJECT_DIR$/createP2.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foundTopDemo4.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundTopDemo4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/code2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/code2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/js/foundTop.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/search_achieve.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/search_achieve.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/foundTop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/foundTop.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,6 +73,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="demo001" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="neo4jWeb3" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/test" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/test/demo001.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="foundTopDemo4" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neo4jWeb3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -99,6 +120,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.foundTopDemo4" />
+        <item itemvalue="Python.demo001" />
         <item itemvalue="Python.createP2" />
       </list>
     </recent_temporary>
@@ -123,6 +145,10 @@
       <workItem from="1646651982466" duration="2777000" />
       <workItem from="1646736256797" duration="8806000" />
       <workItem from="1646996221994" duration="3869000" />
+      <workItem from="1647350825950" duration="6577000" />
+      <workItem from="1647518398593" duration="1619000" />
+      <workItem from="1647532841423" duration="2712000" />
+      <workItem from="1647535709083" duration="1344000" />
     </task>
     <task id="LOCAL-00001" summary="表格数据导入">
       <created>1646052971994</created>
@@ -152,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646655804614</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="联系查询人物专利和top10页面">
+      <created>1647351172701</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1647351172701</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -174,10 +207,12 @@
     <MESSAGE value="表格数据导入" />
     <MESSAGE value="寻找前十名基本完成" />
     <MESSAGE value="查询作者专利文章节点代码，有返回值但是网页不刷新展示。" />
-    <option name="LAST_COMMIT_MESSAGE" value="查询作者专利文章节点代码，有返回值但是网页不刷新展示。" />
+    <MESSAGE value="联系查询人物专利和top10页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="联系查询人物专利和top10页面" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1646998323751" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$demo001.coverage" NAME="demo001 Coverage Results" MODIFIED="1647519483496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1647536804253" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$createP2.coverage" NAME="createP2 Coverage Results" MODIFIED="1646739988944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

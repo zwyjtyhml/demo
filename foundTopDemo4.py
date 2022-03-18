@@ -13,6 +13,7 @@ app = Flask(__name__)
 @app.route('/')
 def index():
     return render_template('foundTop.html')
+    # return render_template('search_achieve.html')
 
 @app.route('/get_ranking',methods=['POST'])
 def GetRanking():
@@ -76,7 +77,7 @@ def GetRanking():
     for i,j in msgview.iterrows():
         dic={'author_id':j.author_id,'author_name':j.author_name,'author_college':j.author_college,'author_major':j.author_major,'score':j.score}
         resList.append(dic)
-    print(resList)
+    # print(resList)
 
     # print('1',msgview.to_json()) #将dict转成str
     # print('2',msgview.to_json(orient='index'))#将最外面的大括号变成方括号即是我们需要转化的json
@@ -101,17 +102,18 @@ def search_achieve():
     # person = request.form['sentence']
     person = request.args.get('name')
     personn = str(person)
-    print(personn)
+    print('sjdkhrfwksroiwrwertwieutj',personn)
+
 
     with driver.session() as session:
-        results = session.run('MATCH (p1{name:"' + personn + '"})-[r1:拥有]->(m) RETURN p1,m,r1')
+        results = session.run('MATCH (p1{name:"'+personn+'"})-[r1:拥有]->(m) RETURN p1,m,r1')
         nodeList = []
         edgeList = []
         # 用for对每一个搜索到的三元组进行处理
         for result in results:
             print(result[0])
             # print(result[0]._id)#打印节点id或者label
-            print(result[0]._properties['name'])  # properties是一个字典 #打印属性中的name
+            # print(result[0]._properties['name'])  # properties是一个字典 #打印属性中的name
 
             nodeList.append(result[0])
             # print(result[1])
@@ -120,7 +122,7 @@ def search_achieve():
             # 将节点去重排列
             nodeList = list(set(nodeList))
             # print(nodeList)
-            print(result[2])  # 打印关系
+            # print(result[2])  # 打印关系
             edgeList.append(result[2])
 
         # 对nodelist中的每个节点进行查找操作
@@ -136,9 +138,11 @@ def search_achieve():
 
         nodes = list(map(BuildMap.buildNodes, nodeList))
         edges = list(map(BuildMap.buildEdges, edgeList))
+        print('--------------------------------------')
         print(nodes)
 
-    return jsonify(elements={"nodes": nodes, "edges": edges})
+    # return jsonify(elements={"nodes": nodes, "edges": edges})
+    return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
 
 if __name__ == '__main__':
     app.run(debug = True)
