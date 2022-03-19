@@ -1,9 +1,15 @@
 $(function (){
+    console.log('jhsagjd------------------serwserwser1')
+    $("#showbtn").click(function(){
+        console.log('jhsagjd------------------serwserwser2')
     $.get("/search_achieve",
-        // {//连同请求发给后端的数据,暂时没用到
-        //     "sentence": $("#input2").val(),
-        // },
+        {//连同请求发给后端的数据,暂时没用到
+            "sentence": $("#input2").val(),
+        },
         function (result) {
+
+        console.log('jhsagj d------------------serwserwser')
+
             var cy = window.cy = cytoscape({
                 container: document.getElementById('cy'),
                 style: cytoscape.stylesheet()
@@ -113,5 +119,6 @@ $(function (){
 
 
         }, 'json');
+    });
 
 });

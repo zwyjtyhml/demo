@@ -2,6 +2,8 @@ import pymysql
 import pandas as pd
 from py2neo import Graph, NodeMatcher,Node
 #将表author_spider中的人物属性对图数据库进行完善，对不存在的人物节点进行新增
+
+#2022.3.19将作者id统一化管理，不采用mysql表中的id，由neo4j自动生成新节点的id
 conn = pymysql.Connect(
     host='localhost',
     port=3306,
@@ -30,8 +32,7 @@ for i, j in df.iterrows():
     re_valuethi = matcher.match("person").where(name=j.author, college=j.college,major=j.major).first()
     if re_valuethi is None:
         #创建人物节点
-        m_attrs = {"name": j.author, "college": j.college, "major": j.major, "article": j.article, "download": j.download,
-                   "id": j.id}
+        m_attrs = {"name": j.author, "college": j.college, "major": j.major, "article": j.article, "download": j.download}
         print(m_attrs)
         m_mode = Node("person", **m_attrs)
         graph.create(m_mode)
@@ -39,7 +40,7 @@ for i, j in df.iterrows():
         #已存在
         print(re_valuethi,'已存在人物')
         #给该节点添加属性
-        properties = {"article":j.article,"download":j.download,"id":j.id}
+        properties = {"article":j.article,"download":j.download}
         addnode = Node(re_valuethi, **properties)
         # graph.merge(addnode)
         graph.merge(re_valuethi,"person",properties)

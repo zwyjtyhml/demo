@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('foundTop.html')
-    # return render_template('search_achieve.html')
+    # return render_template('foundTop.html')
+    return render_template('search_achieve.html')
 
 @app.route('/get_ranking',methods=['POST'])
 def GetRanking():
@@ -100,7 +100,8 @@ def GetRanking():
 @app.route('/search_achieve',methods=['GET'])
 def search_achieve():
     # person = request.form['sentence']
-    person = request.args.get('name')
+    person=request.args.get('sentence')
+    # person = request.args.get('name')
     personn = str(person)
     print('sjdkhrfwksroiwrwertwieutj',personn)
 
@@ -111,10 +112,10 @@ def search_achieve():
         edgeList = []
         # 用for对每一个搜索到的三元组进行处理
         for result in results:
-            print(result[0])
-            # print(result[0]._id)#打印节点id或者label
+            # print(result[0])
+            print("------",result[0]._id)#打印节点id或者label
             # print(result[0]._properties['name'])  # properties是一个字典 #打印属性中的name
-
+            print("======",result[1]._id)
             nodeList.append(result[0])
             # print(result[1])
             nodeList.append(result[1])
@@ -132,7 +133,7 @@ def search_achieve():
             if nodeitem._labels == "article":
                 results_node = session.run(
                     'MATCH (m1{title:"' + nodeitem._properties['title'] + '"})-[r2:关联]->(m2) RETURN m1,m2,r2')
-                print(results_node)
+                # print(results_node)
                 for result_node in results_node:
                     edgeList.append(result_node[2])
 
@@ -140,9 +141,11 @@ def search_achieve():
         edges = list(map(BuildMap.buildEdges, edgeList))
         print('--------------------------------------')
         print(nodes)
+        print(edges)
 
-    # return jsonify(elements={"nodes": nodes, "edges": edges})
-    return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
+    return jsonify(elements={"nodes": nodes, "edges": edges})
+    # return jsonify(elements={"nodes":nodes})
+    # return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
 
 if __name__ == '__main__':
     app.run(debug = True)

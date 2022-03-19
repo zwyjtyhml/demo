@@ -30,28 +30,37 @@ for i, j in df.iterrows():
     # 在where里面写键值对判断语句
     re_valuethi = matcher.match("patent").where(patent_number=attr_patent['patent_number']).first()
     if re_valuethi is None:
-        # 创建人物节点
+        # 创建专利节点
         m_mode = Node("patent", **attr_patent)
         graph.create(m_mode)
         re_valuethi=m_mode
         # print("专利节点创建成功")
 
     #对该专利节点进行与人物的关系建立
-    idall=str(j.author_id).split(",")
+    idall=str(j.author_id).split(",")#有多个作者时id的分割符号为“，”
     for id in idall:
         if id!="":#作者id不为空
-            matcher = NodeMatcher(graph)
-            re_person=matcher.match("person").where(id=id).first()
-            if re_person is None:
-                print("id是"+id+"的作者不存在")
-                #作者节点添加，数据录入
-                attr_person_node={"id":id}
-                per_node=Node("person",**attr_person_node)
+            #去找到人名等各个信息
+            idsqlstr="select name,major,college,artical,download from author_spider where id="+id
+            print(cursor.execute(idsqlstr))
+            if cursor.execute(idsqlstr)==0:#
+                print('人物表里没有这个作者,id是'+id+'的作者不存在"')
+                attr_person_node = {"id": id}
+                per_node = Node("person", **attr_person_node)
                 graph.create(per_node)
             else:
-                relationshipAr = Relationship(re_person, "拥有", re_valuethi)
-                graph.create(relationshipAr)
-                print("关系创建成功")
+                try:
+                    print('在人物表里找到了作者')
+                    persondata = cursor.fetchone()  # name,major,college,article,download
+                    matcher = NodeMatcher(graph)
+                    re_person = matcher.match("person").where(name=persondata[0], major=persondata[1],
+                                                              college=persondata[2], article=persondata[3],
+                                                              download=persondata[4]).first()
+                    relationshipAr = Relationship(re_person, "拥有", re_valuethi)
+                    graph.create(relationshipAr)
+                    print("关系创建成功")
+                except:
+                    print('---------------------可能是没有在neo4j里找到这个人？---------------------')
 
 cursor.close()
 conn.close()
