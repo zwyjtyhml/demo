@@ -4,16 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="联系查询人物专利和top10页面">
-      <change afterPath="$PROJECT_DIR$/static/css/table.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/favicon.ico" afterDir="false" />
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="bug修改">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/foundTopDemo4.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundTopDemo4.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/code2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/code2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/search_achieve.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/search_achieve.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/search_achieve.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/search_achieve.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/foundTop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/foundTop.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/addAuthorId.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/addAuthorId.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/addPatent.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/addPatent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/文件操作.md" beforeDir="false" afterPath="$PROJECT_DIR$/文件操作.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +32,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="25YTfXfdghbp8UqCutzZHCTBuAH" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -62,7 +70,7 @@
       <recent name="D:\program files\pycharm\neo4jWeb3\app" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.addPatent">
+  <component name="RunManager" selected="Python.foundTopDemo4">
     <configuration name="addAuthorId" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neo4jWeb3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -175,10 +183,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.foundTopDemo4" />
         <item itemvalue="Python.addPatent" />
         <item itemvalue="Python.addAuthorId" />
         <item itemvalue="Python.createPhoto4" />
-        <item itemvalue="Python.foundTopDemo4" />
         <item itemvalue="Python.createPhoto" />
       </list>
     </recent_temporary>
@@ -209,7 +217,7 @@
       <workItem from="1647535709083" duration="1344000" />
       <workItem from="1647601363545" duration="4626000" />
       <workItem from="1647664621457" duration="2108000" />
-      <workItem from="1647677689086" duration="15883000" />
+      <workItem from="1647677689086" duration="24710000" />
     </task>
     <task id="LOCAL-00001" summary="表格数据导入">
       <created>1646052971994</created>
@@ -253,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647601463275</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="bug修改">
+      <created>1647712013059</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1647712013059</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -276,26 +291,28 @@
     <MESSAGE value="寻找前十名基本完成" />
     <MESSAGE value="查询作者专利文章节点代码，有返回值但是网页不刷新展示。" />
     <MESSAGE value="联系查询人物专利和top10页面" />
-    <option name="LAST_COMMIT_MESSAGE" value="联系查询人物专利和top10页面" />
+    <MESSAGE value="bug修改" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug修改" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/utils/addPatent.py</url>
-          <line>45</line>
-          <option name="timeStamp" value="2" />
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/templates/foundTop.html</url>
+          <line>29</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto4.coverage" NAME="createPhoto4 Coverage Results" MODIFIED="1647702230472" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto4.coverage" NAME="createPhoto4 Coverage Results" MODIFIED="1647948988315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$demo001.coverage" NAME="demo001 Coverage Results" MODIFIED="1647519483496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1647693189249" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1647961595296" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$createP2.coverage" NAME="createP2 Coverage Results" MODIFIED="1646739988944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/neo4jWeb3$addAuthorId.coverage" NAME="addAuthorId Coverage Results" MODIFIED="1647704452321" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$addAuthorId.coverage" NAME="addAuthorId Coverage Results" MODIFIED="1647949868506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto.coverage" NAME="createPhoto Coverage Results" MODIFIED="1647688803867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../neo4j-web" />
-    <SUITE FILE_PATH="coverage/neo4jWeb3$addPatent.coverage" NAME="addPatent Coverage Results" MODIFIED="1647708180238" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$addPatent.coverage" NAME="addPatent Coverage Results" MODIFIED="1647951458095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
   </component>
 </project>

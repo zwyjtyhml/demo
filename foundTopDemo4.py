@@ -12,8 +12,8 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # return render_template('foundTop.html')
-    return render_template('search_achieve.html')
+    return render_template('foundTop.html')
+    # return render_template('search_achieve.html')
 
 @app.route('/get_ranking',methods=['POST'])
 def GetRanking():
@@ -100,8 +100,8 @@ def GetRanking():
 @app.route('/search_achieve',methods=['GET'])
 def search_achieve():
     # person = request.form['sentence']
-    person=request.args.get('sentence')
-    # person = request.args.get('name')
+    # person=request.args.get('sentence')
+    person = request.args.get('name')
     personn = str(person)
     print('sjdkhrfwksroiwrwertwieutj',personn)
 
@@ -143,9 +143,11 @@ def search_achieve():
         print(nodes)
         print(edges)
 
-    return jsonify(elements={"nodes": nodes, "edges": edges})
+
+    # return jsonify(elements={"nodes": nodes, "edges": edges})
     # return jsonify(elements={"nodes":nodes})
-    # return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
+    re
+    return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
 
 if __name__ == '__main__':
     app.run(debug = True)

@@ -40,27 +40,50 @@ for i, j in df.iterrows():
     idall=str(j.author_id).split(",")#有多个作者时id的分割符号为“，”
     for id in idall:
         if id!="":#作者id不为空
+
+            #取图数据库中的节点组成拥有关系
+            re_valuethi_person=Node()
             #去找到人名等各个信息
             idsqlstr="select name,major,college,artical,download from author_spider where id="+id
             print(cursor.execute(idsqlstr))
+
             if cursor.execute(idsqlstr)==0:#
                 print('人物表里没有这个作者,id是'+id+'的作者不存在"')
-                attr_person_node = {"id": id}
-                per_node = Node("person", **attr_person_node)
-                graph.create(per_node)
+                name_from_id="justID"+id
+                #去图数据库找一下这个人
+                matcher = NodeMatcher(graph)
+                re_valuethi_person = matcher.match("person").where(name=name_from_id).first()
+                if re_valuethi_person is None:
+                    attr_person_node = {"name": name_from_id}
+                    re_valuethi_person = Node("person", **attr_person_node)
+                    graph.create(re_valuethi_person)
             else:
                 try:
                     print('在人物表里找到了作者')
+                    #去图数据库找
                     persondata = cursor.fetchone()  # name,major,college,article,download
                     matcher = NodeMatcher(graph)
-                    re_person = matcher.match("person").where(name=persondata[0], major=persondata[1],
-                                                              college=persondata[2], article=persondata[3],
-                                                              download=persondata[4]).first()
-                    relationshipAr = Relationship(re_person, "拥有", re_valuethi)
+                    re_valuethi_person = matcher.match("person").where(name=persondata[0], major=persondata[1],college=persondata[2]).first()
+                    if re_valuethi_person is None:#没有在neo4j中找到
+                        print('没有在图数据库找到')
+                        m_attrs = {"name":persondata[0], "college": persondata[2], "major": persondata[1], "article": persondata[3],"download": persondata[4]}
+                        # print(m_attrs)
+                        re_valuethi_person = Node("person", **m_attrs)
+                        graph.create(re_valuethi_person)
+                    else:
+                        print(re_valuethi_person, '在图数据库找到了')
+                        # 给该节点添加属性
+                        properties = {"article": persondata[3],"download": persondata[4]}
+                        re_valuethi_person.update(properties)
+                        graph.push(re_valuethi_person)
+                        # graph.merge(re_valuethi_person, "person", properties)
+                        print(re_valuethi_person,"加了属性之后")
+
+                    relationshipAr = Relationship(re_valuethi_person, "拥有", re_valuethi)
                     graph.create(relationshipAr)
                     print("关系创建成功")
                 except:
-                    print('---------------------可能是没有在neo4j里找到这个人？---------------------')
+                    print('--------------------异常情况-------------------')
 
 cursor.close()
 conn.close()
