@@ -1,13 +1,26 @@
 #修改整体代码，实现规范局部刷新
+import pymysql
 from neo4j import GraphDatabase
 import numpy as np
 
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, flash
 import pandas as pd
+from py2neo import NodeMatcher, Graph
+
 from app.calcuscore import CalcuScore
 from app.build_map import BuildMap
 
+conn = pymysql.Connect(
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='123456',
+    db='spider',
+    charset='utf8'
+)
+
 driver = GraphDatabase.driver("bolt://localhost:7687", auth=("neo4j", "current-nebula-forum-hope-bagel-3878")) #认证连接数据库
+graph = Graph('http://localhost:7474', auth=("neo4j", "current-nebula-forum-hope-bagel-3878"))
 app = Flask(__name__)
 
 @app.route('/')
@@ -102,11 +115,13 @@ def search_achieve():
     # person = request.form['sentence']
     # person=request.args.get('sentence')
     person=''
-    personid=''
+    persongetid=''
+    personpostid=''
     if request.method=='POST':
         person = str(request.form.get('name'))
+        personpostid=str(request.form.get('id'))
     if request.method=='GET':
-        personid=str(request.args.get('id'))
+        persongetid=str(request.args.get('id'))
 
     # personn = str(person)
     # print('sjdkhrfwksroiwrwertwieutj',personn)
@@ -115,8 +130,35 @@ def search_achieve():
 
     with driver.session() as session:
         sesstr=''
-        if personid:
-            sesstr='MATCH (p1)-[r1:拥有]->(m) where id(p1)='+personid+' RETURN p1,m,r1'
+        # if personpostid:
+        #     cursor = conn.cursor()
+        #     idsqlstr = "select name,major,college,artical,download from author_spider where id=" + personpostid
+        #     print(cursor.execute(idsqlstr))
+        #     if cursor.execute(idsqlstr)==0:
+        #         #mysql找不到这个人
+        #         flash('没有这个人')
+        #         #找到对应的neo4j也就是persongetid
+        #     else:
+        #         persondata = cursor.fetchone()  # name,major,college,article,download
+        #         matcher = NodeMatcher(graph)
+        #         re_valuethi_person = matcher.match("person").where(name=persondata[0], major=persondata[1],
+        #                                                            college=persondata[2]).first()
+        #         string=str(re_valuethi_person)
+        #         # id=
+        #         # string=string.split("{")
+        #         # string1='{'+string[1].rstrip(')')
+        #         # # dic=eval(string)
+        #         # # print(dic)
+        #         # print(string1)
+        #         # print(re_valuethi_person[1])
+        #         # print(re_valuethi_person)
+        #         # print(type(re_valuethi_person))
+        #         persongetid=string.split(':')[0].split('_')[1]
+        #         print(persongetid)
+        #         sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1'
+
+        if persongetid!='':
+            sesstr='MATCH (p1)-[r1:拥有]->(m) where id(p1)='+persongetid+' RETURN p1,m,r1'
         if person:
             sesstr='MATCH (p1{name:"'+person+'"})-[r1:拥有]->(m) RETURN p1,m,r1'
         results = session.run(sesstr)

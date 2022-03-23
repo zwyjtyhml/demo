@@ -145,11 +145,14 @@ $(function () {
                         topnumber = topnumber + 1;
                     }
                 );
+
                 //跳转到查询人物专利文章节点的页面
                 $(".searchbtn").click(function () {
                     $("#findtop").hide();
                     console.log('藏住了藏住了');
                     $("#findachieve").show();
+                    $("#bynamep").hide();
+                    // $("#byidp").hide();
                     //修改input的value值
                     $("#inputpid").val(this.name)
                     console.log(this.name)
@@ -157,9 +160,12 @@ $(function () {
                         function (result) {
                             draw(result);
                         }, 'json');
-                //    在当前页面也可以进行输入人名搜索
+
+                    //人名搜索
                     $("#showbtn").click(function (){
-                        $("#fromshowbtn").append("<p>搜索出当前名字的所有人物及其成就</p>");
+                        // $("#fromshowbtn").append("<p id='bynamep'>搜索出当前名字的所有人物及其成就</p>");
+                        $("#byidp").hide();
+                        $("#bynamep").show();
                         $.post("/search_achieve",
                             {
                                 "name":$("#inputpid").val()
@@ -168,6 +174,20 @@ $(function () {
                             draw(result);
                         }, 'json');
                     });
+
+                    //id精确查询
+                    $("#showbyrelidbtn").click(function () {
+                        $("#bynamep").hide();
+                        $("#byidp").show();
+                        $.post("/search_achieve",
+                            {
+                                "id":$("#inputprelid").val()
+                            },
+                        function (result) {
+                            draw(result);
+                        }, 'json')
+                    });
+
 
                 });
 
