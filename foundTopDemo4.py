@@ -97,17 +97,29 @@ def GetRanking():
     # return jsonify([{"author_id":"60768","author_name":"\u9ec4\u5065","author_college":"\u6c5f\u82cf\u7701\u82cf\u5dde\u5e02\u6c5f\u5357\u822a\u5929\u673a\u7535\u5de5\u4e1a\u516c\u53f8","author_major":"\u6750\u6599\u79d1\u5b66;\u6b66\u5668\u5de5\u4e1a\u4e0e\u519b\u4e8b\u6280\u672f;\u6c7d\u8f66\u5de5\u4e1a;","score":"76.56399726214921"}])
     return jsonify(resList)
 
-@app.route('/search_achieve',methods=['GET'])
+@app.route('/search_achieve',methods=['GET','POST'])
 def search_achieve():
     # person = request.form['sentence']
     # person=request.args.get('sentence')
-    person = request.args.get('name')
-    personn = str(person)
-    print('sjdkhrfwksroiwrwertwieutj',personn)
+    person=''
+    personid=''
+    if request.method=='POST':
+        person = str(request.form.get('name'))
+    if request.method=='GET':
+        personid=str(request.args.get('id'))
+
+    # personn = str(person)
+    # print('sjdkhrfwksroiwrwertwieutj',personn)
+    # print('-----------------------',personid)
 
 
     with driver.session() as session:
-        results = session.run('MATCH (p1{name:"'+personn+'"})-[r1:拥有]->(m) RETURN p1,m,r1')
+        sesstr=''
+        if personid:
+            sesstr='MATCH (p1)-[r1:拥有]->(m) where id(p1)='+personid+' RETURN p1,m,r1'
+        if person:
+            sesstr='MATCH (p1{name:"'+person+'"})-[r1:拥有]->(m) RETURN p1,m,r1'
+        results = session.run(sesstr)
         nodeList = []
         edgeList = []
         # 用for对每一个搜索到的三元组进行处理
@@ -144,10 +156,10 @@ def search_achieve():
         print(edges)
 
 
-    # return jsonify(elements={"nodes": nodes, "edges": edges})
+    return jsonify(elements={"nodes": nodes, "edges": edges})
     # return jsonify(elements={"nodes":nodes})
-    re
-    return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
+
+    # return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
 
 if __name__ == '__main__':
     app.run(debug = True)
