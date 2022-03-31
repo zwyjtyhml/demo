@@ -45,6 +45,7 @@ def GetRanking():
         results = session.run(
             'MATCH(per:person)-[r:拥有]->(art) where art.keywords=~\'.*' + research_dir + '.*\' or art.title=~\'.*' + research_dir + '.*\' set per.DBentered=0 RETURN per')
         for result in results:
+
             # 对记录中的作者进行图数据库属性查询，是否DBentered属性为1
             judgeResults = session.run(
                 'MATCH (per:person) where id(per)=' + str(result[0]._id) + ' return per.DBentered')
@@ -61,6 +62,7 @@ def GetRanking():
                     for resultsPer in resultsPers:
                         if "article" in resultsPer[2]._labels:  # 是文章节点
                             # 计算ar_time_grades返回atg,,,,referenced_count,downloaded_count设置为99，待录入数据-------------------------------------------------------------
+                            print('time=',resultsPer[2]._properties['date'])
                             atg=CalcuScore().CalActicleScore(resultsPer[2]._properties['sourse'],resultsPer[2]._properties['date'],article_time, 99, referenced_count_rate, 99,downloaded_count_rate)
                             atg_sum = atg_sum + atg
                             at_count = at_count + 1
@@ -114,14 +116,49 @@ def GetRanking():
 def search_achieve():
     # person = request.form['sentence']
     # person=request.args.get('sentence')
-    person=''
-    persongetid=''
-    personpostid=''
+    # person=''
+    # persongetid=''
+    # personpostid=''
+    sesstr=''
     if request.method=='POST':
         person = str(request.form.get('name'))
         personpostid=str(request.form.get('id'))
+        print(personpostid)
+        if person:
+            print(person)
+            sesstr='MATCH (p1{name:"'+person+'"})-[r1:拥有]->(m) RETURN p1,m,r1'
+        if personpostid:
+            print('print(personpostid)2',personpostid)
+            cursor = conn.cursor()
+            idsqlstr = "select name,major,college,artical,download from author_spider where id=" + personpostid
+            print(cursor.execute(idsqlstr))
+            if cursor.execute(idsqlstr)==0:
+                #mysql找不到这个人
+                flash('没有这个人')
+                #找到对应的neo4j也就是persongetid
+            else:
+                persondata = cursor.fetchone()  # name,major,college,article,download
+                matcher = NodeMatcher(graph)
+                re_valuethi_person = matcher.match("person").where(name=persondata[0], major=persondata[1],
+                                                                       college=persondata[2]).first()
+                string=str(re_valuethi_person)
+                # id=
+                # string=string.split("{")
+                # string1='{'+string[1].rstrip(')')
+                # # dic=eval(string)
+                # # print(dic)
+                # print(string1)
+                # print(re_valuethi_person[1])
+                # print(re_valuethi_person)
+                # print(type(re_valuethi_person))
+                persongetid=string.split(':')[0].split('_')[1]
+                print(persongetid)
+                sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1'
+
     if request.method=='GET':
         persongetid=str(request.args.get('id'))
+        if persongetid!='':
+            sesstr='MATCH (p1)-[r1:拥有]->(m) where id(p1)='+persongetid+' RETURN p1,m,r1'
 
     # personn = str(person)
     # print('sjdkhrfwksroiwrwertwieutj',personn)
@@ -129,38 +166,6 @@ def search_achieve():
 
 
     with driver.session() as session:
-        sesstr=''
-        # if personpostid:
-        #     cursor = conn.cursor()
-        #     idsqlstr = "select name,major,college,artical,download from author_spider where id=" + personpostid
-        #     print(cursor.execute(idsqlstr))
-        #     if cursor.execute(idsqlstr)==0:
-        #         #mysql找不到这个人
-        #         flash('没有这个人')
-        #         #找到对应的neo4j也就是persongetid
-        #     else:
-        #         persondata = cursor.fetchone()  # name,major,college,article,download
-        #         matcher = NodeMatcher(graph)
-        #         re_valuethi_person = matcher.match("person").where(name=persondata[0], major=persondata[1],
-        #                                                            college=persondata[2]).first()
-        #         string=str(re_valuethi_person)
-        #         # id=
-        #         # string=string.split("{")
-        #         # string1='{'+string[1].rstrip(')')
-        #         # # dic=eval(string)
-        #         # # print(dic)
-        #         # print(string1)
-        #         # print(re_valuethi_person[1])
-        #         # print(re_valuethi_person)
-        #         # print(type(re_valuethi_person))
-        #         persongetid=string.split(':')[0].split('_')[1]
-        #         print(persongetid)
-        #         sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1'
-
-        if persongetid!='':
-            sesstr='MATCH (p1)-[r1:拥有]->(m) where id(p1)='+persongetid+' RETURN p1,m,r1'
-        if person:
-            sesstr='MATCH (p1{name:"'+person+'"})-[r1:拥有]->(m) RETURN p1,m,r1'
         results = session.run(sesstr)
         nodeList = []
         edgeList = []

@@ -5,19 +5,29 @@ import pymysql
 class CalcuScore():
     def CalActicleScore(self,source, date, atra, referenced_count, rcra, downloaded_count, dcra):  # 计算返回文章得分
         # 获取文章所属期刊类别，即判断sourse所属类别,得到baseScore
-        conn = pymysql.Connect(host='localhost', port=3306, user='root', passwd='123456', db='zstp', charset='utf8')
-        cursor1 = conn.cursor()
-        sqlstr = "SELECT level from zstp.periodical_division WHERE jurnalName='" + source + "'"
-        cursor1.execute(sqlstr)
-        data1 = cursor1.fetchone()
-        baseScore = switch_level(data1)
-        # print('basescore', baseScore)
-        cursor1.close()
-        conn.close()
+        try:
+            conn = pymysql.Connect(host='localhost', port=3306, user='root', passwd='123456', db='zstp', charset='utf8')
+            cursor1 = conn.cursor()
+            sqlstr = "SELECT level from zstp.periodical_division WHERE jurnalName='" + source + "'"
+            cursor1.execute(sqlstr)
+            data1 = cursor1.fetchone()
+            baseScore = switch_level(data1)
+            # print('basescore', baseScore)
+            cursor1.close()
+            conn.close()
+        except:
+            #没有在数据库里找到文章等级
+            print('找不到文献等级，文献为：',source)
+            baseScore=0
 
         # 计算时间间隔，取20年以内比分
+        #时间格式为2016-10-11
+        #如果格式为201709,算中旬2017-09-15
+        if '-' not in date:
+            date = date[:4] + '-'+date[5:]+'-'+'15'
         dateTemp = date + " --"
         date = dateTemp.split(" ")[0]
+        print(date)
         start_time = time.mktime(time.strptime(date, '%Y-%m-%d'))
         end_time = int(time.time())
         count_dayScRa = float((int((end_time - start_time) / (24 * 60 * 60))) / (20 * 365 + 5))  # 时间线拉到20年内，该值越小，表示文章越新

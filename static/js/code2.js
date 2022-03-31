@@ -111,6 +111,8 @@ function draw(result) {
     return undefined;
 }
 
+
+
 $(function () {
     $("#findachieve").hide();
     $("#submitB1").click(function () {
@@ -177,6 +179,7 @@ $(function () {
 
                     //id精确查询
                     $("#showbyrelidbtn").click(function () {
+
                         $("#bynamep").hide();
                         $("#byidp").show();
                         $.post("/search_achieve",
@@ -193,7 +196,44 @@ $(function () {
 
             }, 'json');
     });
+    $("#tofindtop").click(function (){
+        $("#findtop").show();
+        $("#findachieve").hide();
+    });
+    $("#tosearchachieve").click(function () {
+        $("#findtop").hide()
+        $("#findachieve").show();
+        $("#bynamep").hide();
+        $("#inputpid").val("请输入人名或者知网id")
 
+        //人名搜索
+        $("#showbtn").click(function () {
+            // $("#fromshowbtn").append("<p id='bynamep'>搜索出当前名字的所有人物及其成就</p>");
+            $("#byidp").hide();
+            $("#bynamep").show();
+            $.post("/search_achieve",
+                {
+                    "name": $("#inputpid").val()
+                },
+                function (result) {
+                    draw(result);
+                }, 'json');
+        });
+
+        //id精确查询
+        $("#showbyrelidbtn").click(function () {
+
+            $("#bynamep").hide();
+            $("#byidp").show();
+            $.post("/search_achieve",
+                {
+                    "id": $("#inputprelid").val()
+                },
+                function (result) {
+                    draw(result);
+                }, 'json')
+        });
+    });
 
 });
 
