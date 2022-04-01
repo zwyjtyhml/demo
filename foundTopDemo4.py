@@ -120,14 +120,15 @@ def search_achieve():
     # persongetid=''
     # personpostid=''
     sesstr=''
-    if request.method=='POST':
+    if request.method=='POST':#数据来源于#search_achieve,get是从findtop跳转的
         person = str(request.form.get('name'))
         personpostid=str(request.form.get('id'))
         print(personpostid)
-        if person:
-            print(person)
+        if person!=None:
+            print('print(person)',person)
             sesstr='MATCH (p1{name:"'+person+'"})-[r1:拥有]->(m) RETURN p1,m,r1'
-        if personpostid:
+        # if personpostid!='':
+        else:
             print('print(personpostid)2',personpostid)
             cursor = conn.cursor()
             idsqlstr = "select name,major,college,artical,download from author_spider where id=" + personpostid
