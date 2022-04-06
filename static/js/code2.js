@@ -151,9 +151,9 @@ $(function () {
                 //跳转到查询人物专利文章节点的页面
                 $(".searchbtn").click(function () {
                     $("#findtop").hide();
-                    console.log('藏住了藏住了');
                     $("#findachieve").show();
                     $("#bynamep").hide();
+                    $("#byidp").hide();
                     // $("#byidp").hide();
                     //修改input的value值
                     $("#inputpid").val(this.name)
@@ -206,7 +206,7 @@ $(function () {
         $("#findachieve").show();
 
         $("#bynamep").hide();
-        $("#inputpid").val("请输入人名或者知网id")
+        // $("#inputpid").val("请输入人名或者知网id")
 
         //人名搜索
         $("#showbtn").click(function () {

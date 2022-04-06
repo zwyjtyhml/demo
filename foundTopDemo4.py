@@ -62,7 +62,7 @@ def GetRanking():
                     for resultsPer in resultsPers:
                         if "article" in resultsPer[2]._labels:  # 是文章节点
                             # 计算ar_time_grades返回atg,,,,referenced_count,downloaded_count设置为99，待录入数据-------------------------------------------------------------
-                            print('time=',resultsPer[2]._properties['date'])
+                            # print('time=',resultsPer[2]._properties['date'])
                             atg=CalcuScore().CalActicleScore(resultsPer[2]._properties['sourse'],resultsPer[2]._properties['date'],article_time, 99, referenced_count_rate, 99,downloaded_count_rate)
                             atg_sum = atg_sum + atg
                             at_count = at_count + 1
@@ -121,10 +121,10 @@ def search_achieve():
     # personpostid=''
     sesstr=''
     if request.method=='POST':#数据来源于#search_achieve,get是从findtop跳转的
-        person = str(request.form.get('name'))
-        personpostid=str(request.form.get('id'))
-        print(personpostid)
-        if person!=None:
+        person = str(request.form.get('name',''))
+        personpostid=str(request.form.get('id',''))
+
+        if person:
             print('print(person)',person)
             sesstr='MATCH (p1{name:"'+person+'"})-[r1:拥有]->(m) RETURN p1,m,r1'
         # if personpostid!='':
@@ -132,7 +132,7 @@ def search_achieve():
             print('print(personpostid)2',personpostid)
             cursor = conn.cursor()
             idsqlstr = "select name,major,college,artical,download from author_spider where id=" + personpostid
-            print(cursor.execute(idsqlstr))
+            # print(cursor.execute(idsqlstr))
             if cursor.execute(idsqlstr)==0:
                 #mysql找不到这个人
                 flash('没有这个人')
@@ -143,15 +143,6 @@ def search_achieve():
                 re_valuethi_person = matcher.match("person").where(name=persondata[0], major=persondata[1],
                                                                        college=persondata[2]).first()
                 string=str(re_valuethi_person)
-                # id=
-                # string=string.split("{")
-                # string1='{'+string[1].rstrip(')')
-                # # dic=eval(string)
-                # # print(dic)
-                # print(string1)
-                # print(re_valuethi_person[1])
-                # print(re_valuethi_person)
-                # print(type(re_valuethi_person))
                 persongetid=string.split(':')[0].split('_')[1]
                 print(persongetid)
                 sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1'

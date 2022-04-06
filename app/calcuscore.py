@@ -27,7 +27,7 @@ class CalcuScore():
             date = date[:4] + '-'+date[5:]+'-'+'15'
         dateTemp = date + " --"
         date = dateTemp.split(" ")[0]
-        print(date)
+        # print(date)
         start_time = time.mktime(time.strptime(date, '%Y-%m-%d'))
         end_time = int(time.time())
         count_dayScRa = float((int((end_time - start_time) / (24 * 60 * 60))) / (20 * 365 + 5))  # 时间线拉到20年内，该值越小，表示文章越新
