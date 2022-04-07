@@ -1,5 +1,14 @@
+function search_per_fuc(id){
+    // console.log('==============================================',id)
+    $.get("/search_achieve?id=" + id.toString(),
+            function (result) {
+                draw(result);
+            }, 'json');
+}
+
+
 function draw(result) {
-    console.log('jhsagj d------------------serwserwser')
+    // console.log('jhsagj d------------------serwserwser')
 
     var cy = window.cy = cytoscape({
         container: document.getElementById('cy'),
@@ -63,6 +72,11 @@ function draw(result) {
     });
 
     cy.nodes().forEach(function (ele) {
+        // ele.ondblclick=function () {
+        //     console.log('hgfuyfuytf=======================');
+        // };
+
+
         ele.qtip({
             content: {
                 text: qtipText(ele),
@@ -81,7 +95,6 @@ function draw(result) {
         })
     });
 
-
     function makeTitle(node) {
         if (node.data('label') == 'person') {
             return "作者信息"
@@ -99,7 +112,25 @@ function draw(result) {
             //如果节点的label是Name
             //return "作者信息/作者描述"
             //var description='<i>' + node.data('college') + '</i>'+'<i>' + node.data('major')+ '</i>'
-            var description = $('<ul><li>' + node.data('college') + '</li><li>' + node.data('major') + '</li></ul>');
+
+            var description = $('<ul><li><input class="searchbtn2" type="submit" id="'+ node.id()+'" name="search_per_by_id" onclick="search_per_fuc(this.id)" value="' + node.data('name') + '"></li><li>' + node.data('college') + '</li><li>' + node.data('major') + '</li></ul>');
+
+            // var description =$('<a href="/search_achieve?id='+ node.id()+'" style="color:blue">' + node.data('college')+node.data('major') + '</a>');
+
+            // var description =$('<a href="/search_achieve?id='+ node.id()+'" style="color:blue">' + node.data('college')+node.data('major') + '</a>');
+
+            // var description=$('<input class="btn" type="submit" id="search_per_by_id" name="search_per_by_id" value="' + node.data('name') + '">')
+            // var link=$("<input class=\"search_per_by_id_btn\" type=\"submit\" id=" + node.id() + " name=" + node.data('name') + " value=" + node.data('name') + ">")
+            // var link=$('<ul><input type="submit">djhfcbgj</ul>')
+            // console.log(node.id(),node.data('name'))
+
+            $(".searchbtn2").click(function () {
+        $.get("/search_achieve?id=" + this.id.toString(),
+            function (result) {
+                draw(result);
+            }, 'json');
+    })
+
             return description
         } else {//label是wenzhang或者zhuanli
             var link = $('<a href="' + node.data('date_url') + '" id="link" style="color:blue">' + node.data('title') + '</a>');
@@ -108,8 +139,11 @@ function draw(result) {
         }
     }
 
+
+
     return undefined;
 }
+
 
 
 
