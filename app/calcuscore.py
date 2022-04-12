@@ -27,17 +27,23 @@ class CalcuScore():
             date = date[:4] + '-'+date[5:]+'-'+'15'
         dateTemp = date + " --"
         date = dateTemp.split(" ")[0]
-        # print(date)
-        start_time = time.mktime(time.strptime(date, '%Y-%m-%d'))
-        end_time = int(time.time())
-        count_dayScRa = float((int((end_time - start_time) / (24 * 60 * 60))) / (20 * 365 + 5))  # 时间线拉到20年内，该值越小，表示文章越新
-        score1 = (1 - count_dayScRa) * 20 * float(atra) / (float(atra) + float(rcra) + float(dcra))  # 时间额外加分计算完成
-        # 下载量100,000满分
-        # 被引量3000满分
+        print(date)
+        # 如果文章在1971年之前，设置为无效文章数据
+        year=int(date.split("-")[0])
+        if year<=1970:
+            date_score=0
+        else:
+            print(time.strptime(date, '%Y-%m-%d'))
+            start_time = time.mktime(time.strptime(date, '%Y-%m-%d'))
+            end_time = int(time.time())
+            count_dayScRa = float(
+                (int((end_time - start_time) / (24 * 60 * 60))) / (20 * 365 + 5))  # 时间线拉到20年内，该值越小，表示文章越新
+            date_score = (1 - count_dayScRa) * 20 * float(atra) / (float(atra) + float(rcra) + float(dcra))  # 时间额外加分计算完成
+            # 下载量100,000满分
+            # 被引量3000满分
         score2 = (referenced_count / 3000) * 20 * (float(rcra) / (float(atra) + float(rcra) + float(dcra)))
         score3 = (downloaded_count / 100000) * 20 * (float(dcra) / (float(atra) + float(rcra) + float(dcra)))
-
-        return score1 + score2 + score3 + baseScore
+        return date_score + score2 + score3 + baseScore
 
     def CalPatentScore(self,date):
         dateTemp = date + " --"

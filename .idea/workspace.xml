@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="改正了几个bug">
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="点击作者节点跳转">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/calcuscore.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/calcuscore.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/code2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/code2.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/foundTop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/foundTop.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +77,9 @@
     </key>
   </component>
   <component name="RunManager" selected="Python.foundTopDemo4">
+    <configuration name="code2.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/static/js/code2.js" working-dir="$PROJECT_DIR$/static/js">
+      <method v="2" />
+    </configuration>
     <configuration name="addAuthorId" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="neo4jWeb3" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -111,28 +116,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/utils/addPatent.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="createPhoto" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="neo4j-web" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/../neo4j-web" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../neo4j-web/createPhoto.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -188,10 +171,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.foundTopDemo4" />
+        <item itemvalue="Node.js.code2.js" />
         <item itemvalue="Python.addPatent" />
         <item itemvalue="Python.addAuthorId" />
         <item itemvalue="Python.createPhoto4" />
-        <item itemvalue="Python.createPhoto" />
       </list>
     </recent_temporary>
   </component>
@@ -226,7 +209,8 @@
       <workItem from="1648735790131" duration="5650000" />
       <workItem from="1648812635186" duration="4538000" />
       <workItem from="1649247688933" duration="1619000" />
-      <workItem from="1649331215805" duration="7346000" />
+      <workItem from="1649331215805" duration="7702000" />
+      <workItem from="1649417086361" duration="3360000" />
     </task>
     <task id="LOCAL-00001" summary="表格数据导入">
       <created>1646052971994</created>
@@ -319,7 +303,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649249183865</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="点击作者节点跳转">
+      <created>1649338827885</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1649338827885</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -348,12 +339,13 @@
     <MESSAGE value="知识图谱网页v1.0完成" />
     <MESSAGE value="bug" />
     <MESSAGE value="改正了几个bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="改正了几个bug" />
+    <MESSAGE value="点击作者节点跳转" />
+    <option name="LAST_COMMIT_MESSAGE" value="点击作者节点跳转" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto4.coverage" NAME="createPhoto4 Coverage Results" MODIFIED="1647948988315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$demo001.coverage" NAME="demo001 Coverage Results" MODIFIED="1647519483496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1649338572214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1649419904888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$createP2.coverage" NAME="createP2 Coverage Results" MODIFIED="1646739988944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$addAuthorId.coverage" NAME="addAuthorId Coverage Results" MODIFIED="1647949868506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto.coverage" NAME="createPhoto Coverage Results" MODIFIED="1647688803867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../neo4j-web" />

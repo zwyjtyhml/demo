@@ -99,7 +99,10 @@ function draw(result) {
         if (node.data('label') == 'person') {
             return "作者信息"
         } else {
-            return "以下是研究方向成果"
+            if (node.data('label')=='patent')
+                return "专利成果"
+            if (node.data('label')=='article')
+            return "文章成果"
         }
     }
 
@@ -211,19 +214,19 @@ $(function () {
                         }, 'json');
                     });
 
-                    //id精确查询
-                    $("#showbyrelidbtn").click(function () {
-
-                        $("#bynamep").hide();
-                        $("#byidp").show();
-                        $.post("/search_achieve",
-                            {
-                                "id":$("#inputprelid").val()
-                            },
-                        function (result) {
-                            draw(result);
-                        }, 'json')
-                    });
+                    //知网id精确查询
+                    // $("#showbyrelidbtn").click(function () {
+                    //
+                    //     $("#bynamep").hide();
+                    //     $("#byidp").show();
+                    //     $.post("/search_achieve",
+                    //         {
+                    //             "id":$("#inputprelid").val()
+                    //         },
+                    //     function (result) {
+                    //         draw(result);
+                    //     }, 'json')
+                    // });
 
 
                 });
@@ -257,19 +260,19 @@ $(function () {
                 }, 'json');
         });
 
-        //id精确查询
-        $("#showbyrelidbtn").click(function () {
-            $("#inputpid").val('')
-            $("#bynamep").hide();
-            $("#byidp").show();
-            $.post("/search_achieve",
-                {
-                    "id": $("#inputprelid").val()
-                },
-                function (result) {
-                    draw(result);
-                }, 'json')
-        });
+        //知网id精确查询
+        // $("#showbyrelidbtn").click(function () {
+        //     $("#inputpid").val('')
+        //     $("#bynamep").hide();
+        //     $("#byidp").show();
+        //     $.post("/search_achieve",
+        //         {
+        //             "id": $("#inputprelid").val()
+        //         },
+        //         function (result) {
+        //             draw(result);
+        //         }, 'json')
+        // });
     });
 
 });
