@@ -1,11 +1,21 @@
 function search_per_fuc(id){
-    // console.log('==============================================',id)
     $.get("/search_achieve?id=" + id.toString(),
             function (result) {
                 draw(result);
             }, 'json');
 }
-
+    // $("#button").click(function()
+    // {
+    //     $.post("/search", //需要更改
+    //         {
+    //             "sentence":$("#input_sentence").val(),
+    //         },
+    //     function(data,status)
+    //     {
+    //         // alert(data.sentence);
+    //         $("#output_sentence").text(data.sentence)
+    //     });
+    // });
 
 function draw(result) {
     // console.log('jhsagj d------------------serwserwser')
@@ -52,6 +62,22 @@ function draw(result) {
         elements: result.elements//获取的节点
     });
 
+    // //javascript进行数据库连接
+    //
+    // var con = new ActiveXObject("ADODB.Connection");
+    // con.ConnectionString = "DRIVER={MySQL ODBC 5.1 Driver};OPTION=3;SERVER=127.0.0.1;User ID=root;Password=123456;Database=mysql;Port=3306";
+    // con.open;
+    // var rs = new ActiveXObject("ADODB.Recordset");
+    // rs.open("select * from user", con);
+    // while (!rs.eof) {
+    //     var u = rs.Fields("User");
+    //     document.write(u);
+    //     rs.moveNext;
+    // }
+    // rs.close();
+    // rs = null;
+    // con.close();
+    // con = null;
     cy.qtip({
         content: '空白处',
         position: {
@@ -137,17 +163,41 @@ function draw(result) {
             return description
         } else {//label是wenzhang或者zhuanli
             var link = $('<a href="' + node.data('date_url') + '" id="link" style="color:blue">' + node.data('title') + '</a>');
+            if (node.data('label') == 'article'){
+                link=$('<ul><li><p>'+node.data('keywords')+'</p></li><li><a href="' + node.data('date_url') + '" id="link" style="color:blue">' + node.data('title') + '</a></li></ul>')
+            }
             //return description + '</p>';
             return link;
         }
     }
 
-
-
     return undefined;
 }
+//	cy.elements().qtip
+//	({ //点击elements处的提醒
+//		content: {//function(){ return 'Example qTip on ele ' + this.id() },
+//			text:'lianjie',
+////			title:function(){ return '这是专利详情' + this.id() }\
+//            title:function(){return'详情'}
+//			},
+//		position: {
+//			my: 'top center',
+//			at: 'bottom center'
+//		},
+//		style: {
+//			classes: 'qtip-bootstrap',
+//			tip: {
+//				width: 16,
+//				height: 8
+//			}
+//		}
+//	});
 
-
+////监听节点的点击事件
+//    cy.on('tap','node',function(evt){
+//        var node =evt.target;
+//        console.log('这就是');
+//    })
 
 
 $(function () {

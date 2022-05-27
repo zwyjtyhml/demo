@@ -43,6 +43,7 @@ def MatchNode(m_graph, m_label, m_attrs):
 
 # 创建关系
 def CreateRelationship(m_graph, m_label1, m_attrs1, m_label2, m_attrs2, m_r_name):
+
     reValue1 = MatchNode(m_graph, m_label1, m_attrs1)
     reValue2 = MatchNode(m_graph, m_label2, m_attrs2)
     if reValue1 is None or reValue2 is None:

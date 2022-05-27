@@ -83,7 +83,7 @@ for i, j in df.iterrows():
                     graph.create(relationshipAr)
                     print("关系创建成功")
                 except:
-                    print('--------------------异常情况-------------------')
+                    print('异常情况（调试用）')
 
 cursor.close()
 conn.close()

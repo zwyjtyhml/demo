@@ -68,7 +68,7 @@ def CreateNodeArticle(m_graph, m_label, m_attrs,writer):
         graph.create(m_mode)
         # print('文章successful-111')
         return m_mode
-    else:  # 不重复创建节点-------------------------------建议修改采用session实现-----------------------------------------------------
+    else:
         rmatcher = RelationshipMatcher(m_graph)
         #用match来指明要匹配哪种label的节点，用where来表示筛选条件
         pre = matcher.match("person").where(name=writer).first()  # a Node

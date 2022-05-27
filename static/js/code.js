@@ -172,7 +172,7 @@ $(function () {
 ////监听节点的点击事件
 //    cy.on('tap','node',function(evt){
 //        var node =evt.target;
-//        console.log('这就是我想要的哈哈哈哈哈哈');
+//        console.log('这就是');
 //    })
 
 

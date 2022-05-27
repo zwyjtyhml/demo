@@ -4,11 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="点击作者节点跳转">
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="v1.0优化">
+      <change afterPath="$PROJECT_DIR$/app/get_rank.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/build_map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/calcuscore.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/calcuscore.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/foundTopDemo4.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundTopDemo4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/js/code.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/code.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/code2.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/code2.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/foundTop.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/foundTop.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/addPatent.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/addPatent.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/createPhoto4.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/createPhoto4.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils/createWZ&amp;ZL_rel.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/createWZ&amp;ZL_rel.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/文件操作.md" beforeDir="false" afterPath="$PROJECT_DIR$/文件操作.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +47,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitSEFilterConfiguration">
     <file-type-list>
@@ -211,6 +221,15 @@
       <workItem from="1649247688933" duration="1619000" />
       <workItem from="1649331215805" duration="7702000" />
       <workItem from="1649417086361" duration="3360000" />
+      <workItem from="1649763228227" duration="2413000" />
+      <workItem from="1649855236515" duration="5120000" />
+      <workItem from="1649946621596" duration="2037000" />
+      <workItem from="1650207085803" duration="883000" />
+      <workItem from="1650369314504" duration="5804000" />
+      <workItem from="1652883363604" duration="95000" />
+      <workItem from="1652883471698" duration="131000" />
+      <workItem from="1652960517604" duration="647000" />
+      <workItem from="1653645576629" duration="2242000" />
     </task>
     <task id="LOCAL-00001" summary="表格数据导入">
       <created>1646052971994</created>
@@ -310,7 +329,14 @@
       <option name="project" value="LOCAL" />
       <updated>1649338827885</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="v1.0优化">
+      <created>1649763296104</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1649763296104</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,12 +366,13 @@
     <MESSAGE value="bug" />
     <MESSAGE value="改正了几个bug" />
     <MESSAGE value="点击作者节点跳转" />
-    <option name="LAST_COMMIT_MESSAGE" value="点击作者节点跳转" />
+    <MESSAGE value="v1.0优化" />
+    <option name="LAST_COMMIT_MESSAGE" value="v1.0优化" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto4.coverage" NAME="createPhoto4 Coverage Results" MODIFIED="1647948988315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$demo001.coverage" NAME="demo001 Coverage Results" MODIFIED="1647519483496" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
-    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1649419904888" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/neo4jWeb3$foundTopDemo4.coverage" NAME="foundTopDemo4 Coverage Results" MODIFIED="1653647728977" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$createP2.coverage" NAME="createP2 Coverage Results" MODIFIED="1646739988944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$addAuthorId.coverage" NAME="addAuthorId Coverage Results" MODIFIED="1647949868506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
     <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto.coverage" NAME="createPhoto Coverage Results" MODIFIED="1647688803867" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/../neo4j-web" />
