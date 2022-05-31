@@ -31,6 +31,18 @@
         <!-- form表单（这里直接吧form标签去掉了，不然提交的请求为get，405报错） 指定提交方法为 POST:method="POST" -->
         <label for="research_dir">领域或主题：</label>
         <input type="text" name="research_dir" id="research_dir" value="微生物"><br>
+
+        <div>
+            <input type="radio" id="arti_more_important" name="drone" value="arti_more_important" checked>
+            <label for="arti_more_important">更看重文章成果</label>
+            <input type="radio" id="pat_more_important" name="drone" value="pat_more_important">
+            <label for="pat_more_important">更看重专利成果</label>
+        </div>
+
+        <input class="btn" type="submit" id="zidingyizhibiao" name="zidingyizhibiao" value="自定义指标比例">
+
+        <div id="zdyzbdiv">
+        <br>
         <label for="article_ra">发表文献数目：</label>
         <!--        <input type="range"  min="0" max="10" step="1" value="" />-->
         <!-- 上面代码意思是：input元素类型为输入数字控件;min属性指定最小值限制，max属性指定最大值限制，step属性规定合法数字间隔，value属性规定默认值-->
@@ -58,8 +70,14 @@
         <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0"
                onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">
         <span id="show_pa_convertion_rate"></span><br>
-        <input class="btn" type="submit" id="submitB1" name="submit" value="提交">  <!-- 提交按钮 -->
+
+            </div>
+
+        <input class="btn" type="submit" id="submitB1" name="submit" value="查看">  <!-- 提交按钮 -->
         <p name="output" id="output"></p>
+
+
+
 
         <table class="bordered">
             <thead>
