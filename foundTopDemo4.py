@@ -1,35 +1,19 @@
 # 修改整体代码，实现规范局部刷新
-import pymysql
-from neo4j import GraphDatabase
-import numpy as np
-
 from flask import Flask, render_template, request, jsonify, flash
-import pandas as pd
-from py2neo import NodeMatcher, Graph
-
-from app.calcuscore import CalcuScore
+from py2neo import NodeMatcher
 from app.build_map import BuildMap
+from app.config.settings import DRIVER, GRAPH, MYSQL_CONN
 from app.get_rank import GetRank
 
-conn = pymysql.Connect(
-    host='localhost',
-    port=3306,
-    user='root',
-    passwd='123456',
-    db='spider',
-    charset='utf8'
-)
-
-driver = GraphDatabase.driver("bolt://localhost:7687",
-                              auth=("neo4j", "current-nebula-forum-hope-bagel-3878"))  # 认证连接数据库
-graph = Graph('http://localhost:7474', auth=("neo4j", "current-nebula-forum-hope-bagel-3878"))
+conn = MYSQL_CONN
+driver = DRIVER
+graph = GRAPH
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
     return render_template('foundTop.html')
-    # return render_template('search_achieve.html')
 
 @app.route('/fast_get_rank',methods=['POST'])
 def fast_get_rank():
@@ -141,7 +125,7 @@ def search_achieve():
     return jsonify(elements={"nodes": nodes, "edges": edges})
     # return jsonify(elements={"nodes":nodes})
 
-    # return render_template('search_achieve.html',elements=jsonify({"nodes": nodes, "edges": edges}))
+    # return render_template('search_achiev.html',elements=jsonify({"nodes": nodes, "edges": edges}))
 
 
 if __name__ == '__main__':

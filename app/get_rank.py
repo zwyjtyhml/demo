@@ -1,15 +1,8 @@
-import pymysql
-from neo4j import GraphDatabase
-import numpy as np
-
-from flask import Flask, render_template, request, jsonify, flash
 import pandas as pd
-from py2neo import NodeMatcher, Graph
-
 from app.calcuscore import CalcuScore
+from app.config.settings import GRAPH
 
-driver = GraphDatabase.driver("bolt://localhost:7687",
-                              auth=("neo4j", "current-nebula-forum-hope-bagel-3878"))  # 认证连接数据库
+driver = GRAPH
 
 class GetRank():
 
