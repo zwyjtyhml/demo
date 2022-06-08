@@ -1,18 +1,11 @@
 /*增加表格的样式*/
-body {
-    width: 1000px;/*会同时影响foundTop.html和search_achieve.html*/
-    margin: 40px auto;
-    font-family: 'trebuchet MS', 'Lucida sans', Arial;
-    font-size: 14px;
-    color: #444;
-}
 
 table {
     *border-collapse: collapse; /* IE7 and lower */
     border-spacing: 0;
     width: 100%;
 }
-
+/*<table class="bordered">*/
 .bordered {
     border: solid #ccc 1px;
     -moz-border-radius: 6px;

@@ -3,23 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>专家信息检索</title>
+
+    <script src="/static/js/industry_ranking.js"></script>
     <link href="/static/css/table.css" rel="stylesheet"/>
     <link href="/static/css/daohang.css" rel="stylesheet"/>
+    <link href="/static/css/body.css" rel="stylesheet"/>
+    <script src="/static/js/jquery-1.11.2.min.js"></script>
 </head>
 <body>
+
 <!--导航栏-->
 <div class="nav">
     <ul class="ul_one">
         <li class="li_one">
-            <a href="expert_search.html">行业排名</a>
+            <a href="industry_ranking.html">行业排名</a>
             <ul class="ul_two">
-<!--                <li><a href="#">1</a></li>-->
+                <!--                <li><a href="#">1</a></li>-->
             </ul>
         </li>
         <li class="li_one">
-            <a href="industry_ranking.html">专家信息检索</a>
+            <a href="expert_search.html">专家信息检索</a>
             <ul class="ul_two">
-<!--                <li><a href="#">1</a></li>-->
+                <!--                <li><a href="#">1</a></li>-->
             </ul>
         </li>
 
@@ -27,53 +32,77 @@
 </div>
 
 <!--正文-->
-<div>
+<div class="main">
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <label for="research_dir">领域或主题：</label>
-        <input type="text" name="research_dir" id="research_dir" value="微生物"><br>
+    <input type="text" name="research_dir" id="research_dir" value="微生物"><br>
+
+    <div>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        指标倾斜：
+        <input type="radio" id="arti_more_important" name="drone" value="arti_more_important" checked>
+        <label for="arti_more_important">文章成果</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="radio" id="pat_more_important" name="drone" value="pat_more_important">
+        <label for="pat_more_important">专利成果</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="zdyzb" type="submit" id="zidingyizhibiao" name="zidingyizhibiao" value="点击自定义权重比例">
+    </div>
+
+    <div class="zdyzb">
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="article_ra">发表文献数目：</label>
         <!--        <input type="range"  min="0" max="10" step="1" value="" />-->
         <!-- 上面代码意思是：input元素类型为输入数字控件;min属性指定最小值限制，max属性指定最大值限制，step属性规定合法数字间隔，value属性规定默认值-->
         <input type="range" name="article_ra" id="article_ra" max="10" min="0"
                onchange="document.getElementById('show_article_ra').innerHTML=value">
         <span id="show_article_ra"></span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="article_time">发表文献年代：</label>
         <input type="range" name="article_time" id="article_time" max="10" min="0"
                onchange="document.getElementById('show_article_time').innerHTML=value">
         <span id="show_article_time"></span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="patent_ra">发表专利数量：</label>
         <!--    <input type="text" name="patent_num" id="patent_num"><br> -->
         <input type="range" name="patent_ra" id="patent_ra" max="10" min="0"
                onchange="document.getElementById('show_patent_ra').innerHTML=value">
         <span id="show_patent_ra"></span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="referenced_count">文献引用数量：</label>
         <input type="range" name="referenced_count" id="referenced_count" max="10" min="0"
                onchange="document.getElementById('show_referenced_count').innerHTML=value">
         <span id="show_referenced_count"></span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="downloaded_count">文献下载数量：</label>
         <input type="range" name="downloaded_count" id="downloaded_count" max="10" min="0"
                onchange="document.getElementById('show_downloaded_count').innerHTML=value">
         <span id="show_downloaded_count"></span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="pa_convertion_rate">专利转化率：</label>
         <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0"
                onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">
         <span id="show_pa_convertion_rate"></span><br>
-        <input class="btn" type="submit" id="submitB1" name="submit" value="提交">  <!-- 提交按钮 -->
-        <p name="output" id="output"></p>
+    </div>
 
-        <table class="bordered">
-            <thead>
-            <tr>
-                <th>排名</th>
-                <th>作者</th>
-                <th>单位</th>
-                <th>专业</th>
-                <th>分数</th>
-            </tr>
-            </thead>
-            <tbody id="toplist"></tbody>
-        </table>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <input class="scpm" type="submit" id="submitB1" name="submit" value="生成排名">  <!-- 提交按钮 -->
 
+</div>
 
+<div>
+    <table class="bordered">
+        <thead>
+        <tr>
+            <th>排名</th>
+            <th>作者</th>
+            <th>单位</th>
+            <th>专业</th>
+            <th>分数</th>
+        </tr>
+        </thead>
+        <tbody id="toplist"></tbody>
+    </table>
 </div>
 
 </body>

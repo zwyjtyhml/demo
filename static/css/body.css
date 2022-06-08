@@ -1,0 +1,117 @@
+/*同时影响industry_ranking.html和expert_search.html*/
+
+body {
+    width: 1400px; /*会同时影响foundTop.html和search_achieve.html*/
+    /*margin: 40px auto;*/
+    margin: auto; /*加上40px，顶部会有空隙*/
+    font-family: 'trebuchet MS', 'Lucida sans', Arial;
+    font-size: 16px;
+    color: #444;
+    /*padding: 20px;*/
+}
+
+div.main {
+    width: 1360px;
+    border-radius: 5px;
+    background-color: #F8F8FF;
+    padding: 20px;
+}
+
+/*文本输入*/
+input[type=text], select {
+  width: 30%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+input[type=text] {
+    font-family: inherit;
+    /*color: #5E99BD;设置的是字体颜色*/
+    margin: 10px auto;
+}
+
+/*input[type=range]{*/
+/*    width: 27%;*/
+/*    padding: 12px 20px;*/
+/*    margin: 10px 10px 10px 10px;*/
+/*}*/
+
+input[type=range] {
+    width: 27%;
+    margin: 13px 13px 13px 13px;
+    -webkit-appearance: none;
+    height: 8px;
+    border-radius: 4px;
+    /*background: -webkit-linear-gradient(#ffa200, #ffa200) no-repeat white;*/
+    background: -webkit-linear-gradient(#5599FF, #5599FF) no-repeat white;
+
+    background-size: 50% 100%; /* 由于周期默认value=0.50正好占50% */
+}
+
+
+/*按钮（自定义指标比例）的样式*/
+input[type=submit].zdyzb{
+    border: none;
+    color: #5555FF;
+}
+
+/*提交(生成排名)按钮的样式*/
+input[type=submit].scpm {
+    width: 20%;
+    padding: 14px 20px;
+    margin-top: 20px;
+    /*margin: 8px auto;*/
+      color: white;
+    /*background-color: #99BBFF;*/
+    background-color: #5555FF ;
+    font-family: inherit;
+    border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit].scpm:hover {
+  background-color: #484848;
+}
+/*input[type=submit] {*/
+/*  width: 20%;*/
+/*  background-color: #4CAF50;*/
+/*  color: white;*/
+/*  padding: 14px 20px;*/
+/*  !*margin: 8px 0;*!*/
+/*  margin: 8px auto;*/
+/*  border: none;*/
+/*  border-radius: 4px;*/
+/*  cursor: pointer;*/
+/*}*/
+
+/*!*按钮的样式*!*/
+/*.btn {*/
+/*    font-size: 16px; !*控制按钮大小*!*/
+/*    padding: 3px 5px;*/
+/*    text-decoration: none;*/
+/*    cursor: pointer;*/
+/*    background-color: white;*/
+/*    color: blue;*/
+/*    !*上一句未生效*!*/
+/*    border: 1px solid #555555;*/
+/*    border-radius: 5px;*/
+/*}*/
+
+/*.btn:hover {*/
+/*    text-decoration: none;*/
+/*    background-color: black;*/
+/*    color: white;*/
+/*    border: 1px solid black;*/
+/*}*/
+
+/*单选按钮*/
+input[type=radio]{
+    margin-left: 17px;
+    margin-top: 17px;
+    margin-bottom: 15px;
+}
+
+

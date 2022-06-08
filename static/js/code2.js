@@ -5,7 +5,8 @@ function search_per_fuc(id){
             }, 'json');
 }
 
-function send_zdyzb_post() {//发送自定义指标
+function send_zdyzb_post() {
+    //发送自定义指标
     //$.post是简写的Ajax函数
         $.post("/get_ranking",
             {
