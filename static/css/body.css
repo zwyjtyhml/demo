@@ -1,7 +1,7 @@
 /*同时影响industry_ranking.html和expert_search.html*/
 
 body {
-    width: 1400px; /*会同时影响foundTop.html和search_achieve.html*/
+    width: 1200px; /*会同时影响foundTop.html和search_achieve.html*/
     /*margin: 40px auto;*/
     margin: auto; /*加上40px，顶部会有空隙*/
     font-family: 'trebuchet MS', 'Lucida sans', Arial;
@@ -11,7 +11,7 @@ body {
 }
 
 div.main {
-    width: 1360px;
+    width: 1160px;
     border-radius: 5px;
     background-color: #F8F8FF;
     padding: 20px;

@@ -12,7 +12,7 @@
 .ul_one {
     background-color: crimson;
     /* width: 80%; */
-    width: 1400px;
+    width: 1200px;
     height: 60px;
     margin: 0 auto;
 }
@@ -29,7 +29,7 @@
 
 .li_one {
     /*导航栏的每一个列*/
-    width: 700px;
+    width: 600px;
     height: 60px;
     line-height: 60px;
     text-align: center;

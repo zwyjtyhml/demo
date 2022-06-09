@@ -15,6 +15,10 @@ app = Flask(__name__)
 def index():
     return render_template('industry_ranking.html')
 
+@app.route('/expert_search')
+def expert_search():
+    return render_template('expert_search.html')
+
 @app.route('/fast_get_rank',methods=['POST'])
 def fast_get_rank():
     research_dir_list = request.form['research_dir'].split(',')  # 文字内容，是领域或者主题,用英文逗号隔开
