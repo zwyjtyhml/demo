@@ -2,13 +2,13 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>专家信息检索</title>
-
-    <script src="/static/js/industry_ranking.js"></script>
+    <title>行业排名</title>
     <link href="/static/css/table.css" rel="stylesheet"/>
     <link href="/static/css/daohang.css" rel="stylesheet"/>
     <link href="/static/css/body.css" rel="stylesheet"/>
     <script src="/static/js/jquery-1.11.2.min.js"></script>
+<!--注意引入js的顺序-->
+    <script src="/static/js/industry_ranking.js"></script>
 </head>
 <body>
 
@@ -49,13 +49,13 @@
         <input class="zdyzb" type="submit" id="zidingyizhibiao" name="zidingyizhibiao" value="点击自定义权重比例">
     </div>
 
-    <div class="zdyzb">
+    <div class="zdyzb" id="zdyzbdiv">
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="article_ra">发表文献数目：</label>
         <!--        <input type="range"  min="0" max="10" step="1" value="" />-->
         <!-- 上面代码意思是：input元素类型为输入数字控件;min属性指定最小值限制，max属性指定最大值限制，step属性规定合法数字间隔，value属性规定默认值-->
         <input type="range" name="article_ra" id="article_ra" max="10" min="0"
-               onchange="document.getElementById('show_article_ra').innerHTML=value">
+               onchange="input_range_changed()">
         <span id="show_article_ra"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="article_time">发表文献年代：</label>
@@ -79,7 +79,7 @@
                onchange="document.getElementById('show_downloaded_count').innerHTML=value">
         <span id="show_downloaded_count"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <label for="pa_convertion_rate">专利转化率：</label>
+        <label for="pa_convertion_rate">专利转化率：</label>&nbsp;&nbsp;&nbsp;
         <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0"
                onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">
         <span id="show_pa_convertion_rate"></span><br>
@@ -90,7 +90,7 @@
 
 </div>
 
-<div>
+<div id="rank_tab">
     <table class="bordered">
         <thead>
         <tr>

@@ -2,18 +2,11 @@ import pandas as pd
 import pymysql
 from py2neo import Node, Relationship, Graph, NodeMatcher, RelationshipMatcher
 #从数据库中获取数据存入neo4j图形数据库
+from app.config.settings import MYSQL_CONN, GRAPH
 
-# 建立数据库连接
-conn = pymysql.Connect(
-    host='localhost',
-    port=3306,
-    user='root',
-    passwd='123456',
-    db='spider',
-    charset='utf8'
-)
+conn = MYSQL_CONN
 # 连接neo4j数据库，输入地址、用户名、密码
-graph = Graph('http://localhost:7474', auth=("neo4j", "current-nebula-forum-hope-bagel-3878"))
+graph = GRAPH
 graph.delete_all()
 
 # 创建节点

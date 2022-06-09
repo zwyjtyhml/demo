@@ -1,8 +1,8 @@
 import pandas as pd
 from app.calcuscore import CalcuScore
-from app.config.settings import GRAPH
+from app.config.settings import GRAPH, DRIVER
 
-driver = GRAPH
+driver = DRIVER
 
 class GetRank():
 

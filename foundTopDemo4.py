@@ -13,7 +13,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('foundTop.html')
+    return render_template('industry_ranking.html')
 
 @app.route('/fast_get_rank',methods=['POST'])
 def fast_get_rank():

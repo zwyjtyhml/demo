@@ -20,3 +20,5 @@ MYSQL_CONN=pymysql.Connect(
     db='spider',
     charset='utf8'
 )
+
+# MYSQL_ZSTP_CONN=
