@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="css样式修改">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/neo4jWeb3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neo4jWeb3.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/foundTopDemo4.py" beforeDir="false" afterPath="$PROJECT_DIR$/foundTopDemo4.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/body.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/body.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/daohang.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/daohang.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/expert_search.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/expert_search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/industry_ranking.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/industry_ranking.html" afterDir="false" />
-    </list>
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="导航栏切换实现" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -522,7 +513,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654680767422</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="导航栏切换实现">
+      <created>1654788370066</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1654788370066</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -567,7 +565,8 @@
     <MESSAGE value="v1.0优化" />
     <MESSAGE value="支持输入多个领域，用空格隔开" />
     <MESSAGE value="css样式修改" />
-    <option name="LAST_COMMIT_MESSAGE" value="css样式修改" />
+    <MESSAGE value="导航栏切换实现" />
+    <option name="LAST_COMMIT_MESSAGE" value="导航栏切换实现" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/neo4jWeb3$createPhoto4.coverage" NAME="createPhoto4 Coverage Results" MODIFIED="1647948988315" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/utils" />
