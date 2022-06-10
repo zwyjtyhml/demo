@@ -7,7 +7,7 @@
     <link href="/static/css/daohang.css" rel="stylesheet"/>
     <link href="/static/css/body.css" rel="stylesheet"/>
     <script src="/static/js/jquery-1.11.2.min.js"></script>
-<!--注意引入js的顺序-->
+    <!--注意引入js的顺序-->
     <script src="/static/js/industry_ranking.js"></script>
 </head>
 <body>
@@ -39,12 +39,12 @@
 
     <div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        指标倾斜：
-        <input type="radio" id="arti_more_important" name="drone" value="arti_more_important" checked>
-        <label for="arti_more_important">文章成果</label>
+        专家打分指标倾斜：
+        <input class="moren" type="radio" id="arti_more_important" name="drone" value="arti_more_important" checked>
+        <label class="moren" for="arti_more_important">文章成果</label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="radio" id="pat_more_important" name="drone" value="pat_more_important">
-        <label for="pat_more_important">专利成果</label>
+        <input class="moren" type="radio" id="pat_more_important" name="drone" value="pat_more_important">
+        <label class="moren" for="pat_more_important">专利成果</label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input class="zdyzb" type="submit" id="zidingyizhibiao" name="zidingyizhibiao" value="点击自定义权重比例">
     </div>
@@ -54,33 +54,39 @@
         <label for="article_ra">发表文献数目：</label>
         <!--        <input type="range"  min="0" max="10" step="1" value="" />-->
         <!-- 上面代码意思是：input元素类型为输入数字控件;min属性指定最小值限制，max属性指定最大值限制，step属性规定合法数字间隔，value属性规定默认值-->
-        <input type="range" name="article_ra" id="article_ra" max="10" min="0"
-               onchange="input_range_changed()">
+        <input type="range" name="article_ra" id="article_ra" max="10" min="0" value="5"
+               onchange="function input_range_changed() {
+    const duration = document.getElementById('dur');
+    durVal = parseFloat(duration.value);
+    const durationPercent = parseFloat(durVal, 2) * 100
+    duration.style.backgroundSize = '${durationPercent}%, 100%'
+               }
+               input_range_changed()">
         <span id="show_article_ra"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="article_time">发表文献年代：</label>
-        <input type="range" name="article_time" id="article_time" max="10" min="0"
+        <input type="range" name="article_time" id="article_time" max="10" min="0" value="5"
                onchange="document.getElementById('show_article_time').innerHTML=value">
         <span id="show_article_time"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="patent_ra">发表专利数量：</label>
         <!--    <input type="text" name="patent_num" id="patent_num"><br> -->
-        <input type="range" name="patent_ra" id="patent_ra" max="10" min="0"
+        <input type="range" name="patent_ra" id="patent_ra" max="10" min="0" value="5"
                onchange="document.getElementById('show_patent_ra').innerHTML=value">
         <span id="show_patent_ra"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="referenced_count">文献引用数量：</label>
-        <input type="range" name="referenced_count" id="referenced_count" max="10" min="0"
+        <input type="range" name="referenced_count" id="referenced_count" max="10" min="0" value="5"
                onchange="document.getElementById('show_referenced_count').innerHTML=value">
         <span id="show_referenced_count"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="downloaded_count">文献下载数量：</label>
-        <input type="range" name="downloaded_count" id="downloaded_count" max="10" min="0"
+        <input type="range" name="downloaded_count" id="downloaded_count" max="10" min="0" value="5"
                onchange="document.getElementById('show_downloaded_count').innerHTML=value">
         <span id="show_downloaded_count"></span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="pa_convertion_rate">专利转化率：</label>&nbsp;&nbsp;&nbsp;
-        <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0"
+        <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0" value="5"
                onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">
         <span id="show_pa_convertion_rate"></span><br>
     </div>
