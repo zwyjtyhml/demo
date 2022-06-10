@@ -29,7 +29,7 @@ class CalcuScore():
             date = date[:4] + '-'+date[5:]+'-'+'15'
         dateTemp = date + " --"
         date = dateTemp.split(" ")[0]
-        print(date)
+        # print(date)
         # 如果文章在1971年之前，设置为无效文章数据
         year=int(date.split("-")[0])
 
@@ -37,7 +37,7 @@ class CalcuScore():
             date_score=0
 
         else:
-            print(time.strptime(date, '%Y-%m-%d'))
+            # print(time.strptime(date, '%Y-%m-%d'))
             start_time = time.mktime(time.strptime(date, '%Y-%m-%d'))
             end_time = int(time.time())
             count_dayScRa = float(

@@ -1,18 +1,11 @@
 import pandas as pd
-import pymysql
 from py2neo import Node, Relationship, Graph, NodeMatcher, RelationshipMatcher
+from app.config.settings import MYSQL_CONN, GRAPH
 #根据表patent_spider创建专利节点，并和作者节点进行连接
-# 建立数据库连接
-conn = pymysql.Connect(
-    host='localhost',
-    port=3306,
-    user='root',
-    passwd='123456',
-    db='spider',
-    charset='utf8'
-)
+
+conn = MYSQL_CONN
 # 连接neo4j数据库，输入地址、用户名、密码
-graph = Graph('http://localhost:7474', auth=("neo4j", "current-nebula-forum-hope-bagel-3878"))
+graph = GRAPH
 
 # MATCH(per:person)-[r:拥有]->(art) where art.keywords=~'.*微生物.*' or art.title=~'.*微生物.*' return per
 
