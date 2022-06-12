@@ -21,14 +21,30 @@ class BuildMap():
 
     def find_node_and_edge(self, sesstr):
         with driver.session() as session:
+            # MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1
             results = session.run(sesstr)
             nodeList = []
             edgeList = []
+            ids=[]
+            article_and_patent_ids=[]
+            divs=[]
             # 用for对每一个搜索到的三元组进行处理
             for result in results:
+                if result[0]._id not in ids:
+                    ids.append(result[0]._id)
+                    person_obj = {
+                        'id': result[0]._id,
+                        'name': result[0]._properties['name'],
+                    }
+                    divs.append(person_obj)
+                for person_obj in divs:
+                    if person_obj['id']==result[0]._id and result[1]._id not in article_and_patent_ids:
+                        article_and_patent_ids.append(result[1]._id)
+                        person_obj['art_or_pa']=result[1]
                 # print(result[0])
                 print("------", result[0]._id)  # 打印节点id或者label
                 # print(result[0]._properties['name'])  # properties是一个字典 #打印属性中的name
+                person_obj.update('name')
                 print("======", result[1]._id)
                 nodeList.append(result[0])
                 nodeList.append(result[1])
@@ -47,6 +63,8 @@ class BuildMap():
                     # print(results_node)
                     for result_node in results_node:
                         edgeList.append(result_node[2])
+
+
 
             nodes = list(map(BuildMap.buildNodes, nodeList))
             edges = list(map(BuildMap.buildEdges, edgeList))
