@@ -4,8 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="css样式修改">
-      <change beforePath="$PROJECT_DIR$/.idea/neo4jWeb3.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/neo4jWeb3.iml" afterDir="false" />
+    <list default="true" id="3ffd0bac-b49d-4396-bdfa-8d8cf6f0c956" name="Changes" comment="第一个页面基本完成，下面做第二个页面和跳转页面">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build_map.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/build_map.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/calcuscore.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/calcuscore.py" afterDir="false" />
@@ -402,7 +401,7 @@
       <workItem from="1653875341823" duration="13586000" />
       <workItem from="1654478218379" duration="84000" />
       <workItem from="1654657883757" duration="11217000" />
-      <workItem from="1654756617707" duration="23776000" />
+      <workItem from="1654756617707" duration="25008000" />
     </task>
     <task id="LOCAL-00001" summary="表格数据导入">
       <created>1646052971994</created>
@@ -530,7 +529,14 @@
       <option name="project" value="LOCAL" />
       <updated>1654767275813</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="第一个页面基本完成，下面做第二个页面和跳转页面">
+      <created>1654853779484</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1654853779484</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -576,7 +582,8 @@
     <MESSAGE value="支持输入多个领域，用空格隔开" />
     <MESSAGE value="css样式修改" />
     <MESSAGE value="js一部分" />
-    <option name="LAST_COMMIT_MESSAGE" value="js一部分" />
+    <MESSAGE value="第一个页面基本完成，下面做第二个页面和跳转页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="第一个页面基本完成，下面做第二个页面和跳转页面" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/neo4jWeb3$createP2.coverage" NAME="createP2 Coverage Results" MODIFIED="1646739988944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
