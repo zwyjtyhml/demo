@@ -106,10 +106,10 @@ function draw(result) {
         if (node.data('label') == 'person') {
             return "作者信息"
         } else {
-            if (node.data('label')=='patent')
+            if (node.data('label') == 'patent')
                 return "专利成果"
-            if (node.data('label')=='article')
-            return "文章成果"
+            if (node.data('label') == 'article')
+                return "文章成果"
         }
     }
 
@@ -123,7 +123,7 @@ function draw(result) {
             //return "作者信息/作者描述"
             //var description='<i>' + node.data('college') + '</i>'+'<i>' + node.data('major')+ '</i>'
 
-            var description = $('<ul><li><input class="searchbtn2" type="submit" id="'+ node.id()+'" name="search_per_by_id" onclick="search_per_fuc(this.id)" value="' + node.data('name') + '"></li><li>' + node.data('college') + '</li><li>' + node.data('major') + '</li></ul>');
+            var description = $('<ul><li><input class="searchbtn2" type="submit" id="' + node.id() + '" name="search_per_by_id" onclick="search_per_fuc(this.id)" value="' + node.data('name') + '"></li><li>' + node.data('college') + '</li><li>' + node.data('major') + '</li></ul>');
 
             // var description =$('<a href="/search_achieve?id='+ node.id()+'" style="color:blue">' + node.data('college')+node.data('major') + '</a>');
 
@@ -135,17 +135,17 @@ function draw(result) {
             // console.log(node.id(),node.data('name'))
 
             $(".searchbtn2").click(function () {
-        $.get("/search_achieve?id=" + this.id.toString(),
-            function (result) {
-                draw(result);
-            }, 'json');
-    })
+                $.get("/search_achieve?id=" + this.id.toString(),
+                    function (result) {
+                        draw(result);
+                    }, 'json');
+            })
 
             return description
         } else {//label是wenzhang或者zhuanli
             var link = $('<a href="' + node.data('date_url') + '" id="link" style="color:blue">' + node.data('title') + '</a>');
-            if (node.data('label') == 'article'){
-                link=$('<ul><li><p>'+node.data('keywords')+'</p></li><li><a href="' + node.data('date_url') + '" id="link" style="color:blue">' + node.data('title') + '</a></li></ul>')
+            if (node.data('label') == 'article') {
+                link = $('<ul><li><p>' + node.data('keywords') + '</p></li><li><a href="' + node.data('date_url') + '" id="link" style="color:blue">' + node.data('title') + '</a></li></ul>')
             }
             //return description + '</p>';
             return link;
@@ -154,6 +154,7 @@ function draw(result) {
 
     return undefined;
 }
+
 //	cy.elements().qtip
 //	({ //点击elements处的提醒
 //		content: {//function(){ return 'Example qTip on ele ' + this.id() },
@@ -180,7 +181,25 @@ function draw(result) {
 //        console.log('这就是');
 //    })
 $(function () {
-    js_object = eval('{{result_json|safe }}')
+    // if ('{{result_json|safe }}' != '') {
+    //     js_object = eval('{{result_json|safe }}');
+    //
+    //     draw(js_object);
+    // }
 
-    draw(js_object);
+    //人名搜索
+    $("#showbtn").click(function () {
+        // $("#fromshowbtn").append("<p id='bynamep'>搜索出当前名字的所有人物及其成就</p>");
+        // $("#inputprelid").val('')
+        // $("#byidp").hide();
+        // $("#bynamep").show();
+        $.post("/search_achieve",
+            {
+                "name": $("#inputpid").val()
+            },
+            function (result) {
+                draw(result);
+            }, 'json');
+    });
+
 })

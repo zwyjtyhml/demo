@@ -128,4 +128,28 @@ input[type=radio]{
     margin-bottom: 15px;
 }
 
+/*.zdyzb {*/
+/*    position: relative;*/
+/*    display: inline-block;*/
+/*    border-bottom: 1px dotted black;*/
+/*}*/
+
+/*.zdyzb .tooltiptext {*/
+/*    visibility: hidden;*/
+/*    width: 120px;*/
+/*    background-color: black;*/
+/*    color: #fff;*/
+/*    text-align: center;*/
+/*    border-radius: 6px;*/
+/*    padding: 5px 0;*/
+
+/*    !* 定位 *!*/
+/*    position: absolute;*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.zdyzb:hover .tooltiptext {*/
+/*    visibility: visible;*/
+/*}*/
+
 

@@ -21,14 +21,17 @@ def index():
 def expert_search():
     sesstr=''
     if request.method == 'GET':
-        persongetid = str(request.args.get('id'))
-        if persongetid != '':
-            sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1'
+        persongetid = request.args.get('id')
+        if persongetid:
+            sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + str(persongetid) + ' RETURN p1,m,r1'
+            result = BuildMap().find_node_and_edge(sesstr)
+            return render_template('expert_search.html', result_json=json.dumps(result))
+        else:
+            return render_template('expert_search.html')
 
-    result = BuildMap().find_node_and_edge(sesstr)
 
     # return jsonify(elements=result)
-    return render_template('expert_search.html', result_json = json.dumps(result))
+
 
 @app.route('/fast_get_rank',methods=['POST'])
 def fast_get_rank():
@@ -97,7 +100,9 @@ def search_achieve():
         if persongetid != '':
             sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1'
 
-    result=BuildMap.find_node_and_edge(sesstr)
+    result=BuildMap().find_node_and_edge(sesstr)
+
+    print(result)
 
     return jsonify(elements=result)
     # return jsonify(elements={"nodes":nodes})
