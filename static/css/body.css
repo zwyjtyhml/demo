@@ -89,6 +89,24 @@ input[type=submit].scpm {
 input[type=submit].scpm:hover {
   background-color: #484848;
 }
+/*搜索专家详情按钮的样式*/
+input[type=submit].scpm2 {
+    width: 8%;
+    padding: 14px 20px;
+    margin-top: 20px;
+    /*margin: 8px auto;*/
+      color: white;
+    /*background-color: #99BBFF;*/
+    background-color: #5555FF ;
+    font-family: inherit;
+    border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+input[type=submit].scpm2:hover {
+  background-color: #484848;
+}
+
 /*input[type=submit] {*/
 /*  width: 20%;*/
 /*  background-color: #4CAF50;*/

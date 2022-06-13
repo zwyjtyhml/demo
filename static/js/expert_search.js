@@ -181,6 +181,7 @@ function draw(result) {
 //        console.log('这就是');
 //    })
 $(function () {
+    $("#person_info").hide();
     // if ('{{result_json|safe }}' != '') {
     //     js_object = eval('{{result_json|safe }}');
     //
