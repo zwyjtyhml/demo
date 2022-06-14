@@ -1,6 +1,4 @@
-# 修改整体代码，实现规范局部刷新
 import json
-
 from flask import Flask, render_template, request, jsonify, flash
 from py2neo import NodeMatcher
 from app.build_map import BuildMap
@@ -62,11 +60,20 @@ def GetRanking():
 
     return jsonify(resList)
 
+@app.route('/draw_graph', methods=['GET', 'POST'])
+def draw_graph():
+    if request.method=='GET':
+        person = str(request.args.get('name', ''))
+        print(person)
+        if person:
+            sesstr = 'MATCH (p1{name:"' + person + '"})-[r1:拥有]->(m) RETURN p1,m,r1'
+            result = BuildMap().find_node_and_edge(sesstr)
+            return jsonify(elements=result)
+
+
 
 @app.route('/search_achieve', methods=['GET', 'POST'])
 def search_achieve():
-    # person = request.form['sentence']
-    # person=request.args.get('sentence')
     sesstr = ''
     if request.method == 'POST':  # 数据来源于#search_achieve,get是从findtop跳转的
         person = str(request.form.get('name', ''))
@@ -100,12 +107,11 @@ def search_achieve():
         if persongetid != '':
             sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + persongetid + ' RETURN p1,m,r1'
 
-    result=BuildMap().find_node_and_edge(sesstr)
+    # result=BuildMap().find_node_and_edge(sesstr)
+    result=BuildMap().find_information(sesstr)
 
-    print(result)
-
-    return jsonify(elements=result)
-    # return jsonify(elements={"nodes":nodes})
+    # return jsonify(result)
+    return json.dumps(result)
 
     # return render_template('search_achiev.html',elements=jsonify({"nodes": nodes, "edges": edges}))
 

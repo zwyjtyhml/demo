@@ -78,11 +78,10 @@ function draw(result) {
         }
     });
 
-    cy.nodes().forEach(function (ele) {
+    cy.nodes().forEach(function (ele) {// forEach() 方法对数组的每个元素执行一次提供的函数。
         // ele.ondblclick=function () {
         //     console.log('hgfuyfuytf=======================');
         // };
-
 
         ele.qtip({
             content: {
@@ -181,14 +180,15 @@ function draw(result) {
 //        console.log('这就是');
 //    })
 $(function () {
-    $("#person_info").hide();
+    // $("#person_info").hide();
+
     // if ('{{result_json|safe }}' != '') {
     //     js_object = eval('{{result_json|safe }}');
     //
     //     draw(js_object);
     // }
 
-    //人名搜索
+    //人名搜索 展示专家信息
     $("#showbtn").click(function () {
         // $("#fromshowbtn").append("<p id='bynamep'>搜索出当前名字的所有人物及其成就</p>");
         // $("#inputprelid").val('')
@@ -198,9 +198,43 @@ $(function () {
             {
                 "name": $("#inputpid").val()
             },
-            function (result) {
-                draw(result);
+            function (result) {//这一层函数外包不可以去掉
+                $(result).each(function (key, values) {//key是数字0，1，2。。
+                    $("#person_info").append("<div class='person_div' id=person" + key + "></div>");
+                    // $("#person" + key).append("<div class=\"line_cut\"></div>");
+                    $("#person" + key).append("<div class='per_name'>" + values.name + "</div>");
+                    $("#person" + key).append("<div class='per_college'>单位：" + values.college + "</div>");
+                    $("#person" + key).append("<div class='per_major'>专业：" + values.major + "</div>");
+                    if (values.articles.length > 0) {
+                        $("#person" + key).append("<div class='per_articles' id=article" + key + ">文章：</div>");
+                        $(values.articles).each(function (i, v) {
+                            $("#article" + key).append('<a href="' + v.date_url + '" class="link" style="color:blue">' + v.title + '</a>')
+                        });
+                    }
+                    if (values.patents.length > 0) {
+                        $("#person" + key).append("<div class='per_patents' id=patent" + key + ">专利：</div>");
+                        $(values.patents).each(function (i, v) {
+                            //专利数据目前没有url
+                            $("#patent" + key).append('<a href="' + v.url + '" class="link" style="color:blue">' + v.title + '</a>')
+                        });
+                    }
+                });
             }, 'json');
+        $("#person_info").show();
+        $("#cy").hide();
+    });
+
+    //展示图谱
+    $("#showbtn2").click(function () {
+        $("#person_info").hide();
+        $.get("/draw_graph",
+            {
+                "name": $("#inputpid").val()
+            },
+            function (result) {
+                draw(result)
+            },'json')
+        $("#cy").show()
     });
 
 })

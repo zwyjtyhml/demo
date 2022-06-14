@@ -46,8 +46,12 @@
         <input class="moren" type="radio" id="pat_more_important" name="drone" value="pat_more_important">
         <label class="moren" for="pat_more_important">专利成果</label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input class="zdyzb" type="submit" id="zidingyizhibiao" name="zidingyizhibiao" value="点击自定义权重比例">
-<!--        <span class="tooltiptext">提示文本</span>-->
+        <div class="tooltip">
+            <input class="zdyzb" type="submit" id="zidingyizhibiao" name="zidingyizhibiao" value="点击自定义权重比例">
+
+            <span class="tooltiptext">点击设置所选行业的考察指标重要程度，指标值越大表示该指标得分占总分比重越大</span>
+        </div>
+
     </div>
 
     <div class="zdyzb" id="zdyzbdiv">
@@ -93,6 +97,15 @@
     </div>
 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    查看前
+    <!--    <form action="">-->
+    <select class="form-control info-select">
+        <option value="volvo" selected>10</option>
+        <option value="saab">20</option>
+        <option value="fiat">50</option>
+        <option value="audi">100</option>
+    </select>名 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <!--    </form>-->
     <input class="scpm" type="submit" id="submitB1" name="submit" value="生成排名">  <!-- 提交按钮 -->
 
 </div>
