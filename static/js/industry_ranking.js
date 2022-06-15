@@ -9,6 +9,7 @@ function send_zdyzb_post(flag) {
             "patent_ra": $("#patent_ra").val(),
             "referenced_count_rate": $("#referenced_count").val(),
             "downloaded_count_rate": $("#downloaded_count").val(),
+            "show_people_sum":$("#show_people_sum").val(),
         }
     } else {
         // console.log("--------------------------------")
@@ -21,6 +22,7 @@ function send_zdyzb_post(flag) {
                 "patent_ra": 2,
                 "referenced_count_rate": 8,
                 "downloaded_count_rate": 8,
+                "show_people_sum":$("#show_people_sum").val(),
             }
         } else {
             //重视专利成果
@@ -31,6 +33,7 @@ function send_zdyzb_post(flag) {
                 "patent_ra": 8,
                 "referenced_count_rate": 2,
                 "downloaded_count_rate": 2,
+                "show_people_sum":$("#show_people_sum").val(),
             }
         }
     }
@@ -63,64 +66,10 @@ function send_zdyzb_post(flag) {
             $(".searchbtn").click(function () {
                 // window.location.href="expert_search"; //这是页面跳转方式
                 //在新窗口打开方式
-                window.open('expert_search?id=' + this.id.toString(), '', 'height=1200,width=1200,scrollbars=yes,status=yes')
-
-                // $("#findtop").hide();
-                // $("#findachieve").show();
-                // $("#bynamep").hide();
-                // $("#byidp").hide();
-                // //修改input的value值
-                // $("#inputpid").val(this.name)
-                // console.log(this.name)
-                // $.get("/search_achieve?id=" + this.id.toString(),
-                //     function (result) {
-                //         draw(result);
-                //     }, 'json');
-                //
-                // //人名搜索
-                // $("#showbtn").click(function () {
-                //     // $("#fromshowbtn").append("<p id='bynamep'>搜索出当前名字的所有人物及其成就</p>");
-                //     $("#byidp").hide();
-                //     $("#bynamep").show();
-                //     $.post("/search_achieve",
-                //         {
-                //             "name": $("#inputpid").val()
-                //         },
-                //         function (result) {
-                //             draw(result);
-                //         }, 'json');
-                // });
-
-                //知网id精确查询
-                // $("#showbyrelidbtn").click(function () {
-                //
-                //     $("#bynamep").hide();
-                //     $("#byidp").show();
-                //     $.post("/search_achieve",
-                //         {
-                //             "id":$("#inputprelid").val()
-                //         },
-                //     function (result) {
-                //         draw(result);
-                //     }, 'json')
-                // });
-
+                window.open('expert_search?id=' + this.id.toString(), '', 'height=1200,width=1200,scrollbars=yes,status=yes');
             });
         }, 'json');
 
-}
-
-function input_range_changed() {
-    console.log("--------------------------------")
-    const duration = document.getElementById('dur');
-    // document.getElementById('show_article_ra').innerHTML = value;
-    //TODO 滑动条变化函数
-    durVal = parseFloat(duration.value);
-    // spdVal = parseFloat(speed.value);
-    const durationPercent = parseFloat(durVal, 2) * 100
-    // const speedPercent = parseFloat((spdVal / 5), 2) * 100
-    duration.style.backgroundSize = `${durationPercent}%, 100%`
-    // speed.style.background = `linear-gradient(to right, #ffa200, white ${speedPercent}%, white`
 }
 
 $(function () {
@@ -133,13 +82,14 @@ $(function () {
         $(".moren").toggle();
 
         if ($("#zdyzbdiv").is(":visible")) {//与hidden相反的是visible
-            $("#zidingyizhibiao").val("点击收起")
+            $("#zidingyizhibiao").val("点击收起");
+            $(".tooltiptext").html("指标值越大表示该指标得分占总分比重越大")
         } else {
-            $("#zidingyizhibiao").val("点击自定义权重比例")
+            $("#zidingyizhibiao").val("点击自定义权重比例");
+            $(".tooltiptext").html("点击设置所选行业的考察指标重要程度，指标值越大表示该指标得分占总分比重越大")
         }
     });
     $("#submitB1").click(function () {//点击生成排名
-        // if($("#zdyzbdiv").show()):
         if ($("#zdyzbdiv").is(":hidden")) {
             // if($("input[name='drone']:checked").val()==1)
             // 不自定义权重的方法
@@ -163,7 +113,7 @@ $(function () {
     //
     //     //人名搜索
     //     $("#showbtn").click(function () {
-    //         // $("#fromshowbtn").append("<p id='bynamep'>搜索出当前名字的所有人物及其成就</p>");
+    //         // $("#fromshowbtn").append("<p id='bynamep'>搜索出当前名字的所有专家及其成就</p>");
     //         $("#inputprelid").val('')
     //         $("#byidp").hide();
     //         $("#bynamep").show();

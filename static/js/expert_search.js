@@ -194,6 +194,7 @@ $(function () {
         // $("#inputprelid").val('')
         // $("#byidp").hide();
         // $("#bynamep").show();
+        $("#person_info").html("");//第二次提交需要清空表格数据
         $.post("/search_achieve",
             {
                 "name": $("#inputpid").val()

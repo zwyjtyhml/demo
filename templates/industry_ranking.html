@@ -60,46 +60,45 @@
         <!--        <input type="range"  min="0" max="10" step="1" value="" />-->
         <!-- 上面代码意思是：input元素类型为输入数字控件;min属性指定最小值限制，max属性指定最大值限制，step属性规定合法数字间隔，value属性规定默认值-->
         <input type="range" name="article_ra" id="article_ra" max="10" min="0" value="5"
-               onchange="function input_range_changed() {
-    const duration = document.getElementById('dur');
-    durVal = parseFloat(duration.value);
-    const durationPercent = parseFloat(durVal, 2) * 100
-    duration.style.backgroundSize = '${durationPercent}%, 100%'
-               }
-               input_range_changed()">
-        <span id="show_article_ra"></span><br>
+               onchange="changeV(this.id)">
+        <span id="show_article_ra" style="color: #959FA9">5</span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="article_time">发表文献年代：</label>
         <input type="range" name="article_time" id="article_time" max="10" min="0" value="5"
-               onchange="document.getElementById('show_article_time').innerHTML=value">
-        <span id="show_article_time"></span><br>
+               onchange="changeV(this.id)">
+        <!--               onchange="document.getElementById('show_article_time').innerHTML=value">-->
+        <span id="show_article_time" style="color: #959FA9">5</span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="patent_ra">发表专利数量：</label>
         <!--    <input type="text" name="patent_num" id="patent_num"><br> -->
         <input type="range" name="patent_ra" id="patent_ra" max="10" min="0" value="5"
-               onchange="document.getElementById('show_patent_ra').innerHTML=value">
-        <span id="show_patent_ra"></span><br>
+               onchange="changeV(this.id)">
+        <!--               onchange="document.getElementById('show_patent_ra').innerHTML=value">-->
+        <span id="show_patent_ra" style="color: #959FA9">5</span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="referenced_count">文献引用数量：</label>
         <input type="range" name="referenced_count" id="referenced_count" max="10" min="0" value="5"
-               onchange="document.getElementById('show_referenced_count').innerHTML=value">
-        <span id="show_referenced_count"></span><br>
+               onchange="changeV(this.id)">
+        <!--               onchange="document.getElementById('show_referenced_count').innerHTML=value">-->
+        <span id="show_referenced_count" style="color: #959FA9">5</span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="downloaded_count">文献下载数量：</label>
         <input type="range" name="downloaded_count" id="downloaded_count" max="10" min="0" value="5"
-               onchange="document.getElementById('show_downloaded_count').innerHTML=value">
-        <span id="show_downloaded_count"></span><br>
+               onchange="changeV(this.id)">
+        <!--               onchange="document.getElementById('show_downloaded_count').innerHTML=value">-->
+        <span id="show_downloaded_count" style="color: #959FA9">5</span><br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <label for="pa_convertion_rate">专利转化率：</label>&nbsp;&nbsp;&nbsp;
         <input type="range" name="pa_convertion_rate" id="pa_convertion_rate" max="10" min="0" value="5"
-               onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">
-        <span id="show_pa_convertion_rate"></span><br>
+               onchange="changeV(this.id)">
+        <!--               onchange="document.getElementById('show_pa_convertion_rate').innerHTML=value">-->
+        <span id="show_pa_convertion_rate" style="color: #959FA9">5</span><br>
     </div>
 
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     查看前
     <!--    <form action="">-->
-    <select class="form-control info-select">
+    <select class="form-control info-select" id="show_people_sum">
         <option value="volvo" selected>10</option>
         <option value="saab">20</option>
         <option value="fiat">50</option>
@@ -126,4 +125,5 @@
 </div>
 
 </body>
+<script src="/static/js/industry_ranking_utils.js"></script>
 </html>

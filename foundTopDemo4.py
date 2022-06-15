@@ -62,6 +62,7 @@ def GetRanking():
 
 @app.route('/draw_graph', methods=['GET', 'POST'])
 def draw_graph():
+    """专家图谱信息"""
     if request.method=='GET':
         person = str(request.args.get('name', ''))
         print(person)
@@ -74,6 +75,7 @@ def draw_graph():
 
 @app.route('/search_achieve', methods=['GET', 'POST'])
 def search_achieve():
+    """专家文字信息"""
     sesstr = ''
     if request.method == 'POST':  # 数据来源于#search_achieve,get是从findtop跳转的
         person = str(request.form.get('name', ''))

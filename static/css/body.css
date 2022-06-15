@@ -188,15 +188,27 @@ select::-ms-expand { display: none; }
     margin-top: 20px;
 }
 .per_name{
-    width: 30%;
+    width: 15%;
     height: 50px;
     margin: 20px;
+    float: left;
 }
 .per_college{
     margin: 20px;
 }
 .per_major{
     margin: 20px;
+}
+.per_articles{
+    margin: 20px;
+}
+.per_patents{
+    margin: 20px;
+}
+.link{
+    width: 60%;
+    display:inline;
+    margin-left: 20px;
 }
 
 
