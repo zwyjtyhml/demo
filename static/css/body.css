@@ -124,6 +124,12 @@ input[type=submit].scpm3:hover {
   background-color: #484848;
 }
 
+input[type=submit].searchbtn{
+    border-style: none;
+    background-color: white;
+    color: #5555FF;
+}
+
 /*单选按钮*/
 input[type=radio]{
     margin-left: 17px;
