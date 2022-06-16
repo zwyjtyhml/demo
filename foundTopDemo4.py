@@ -17,30 +17,18 @@ def index():
 
 @app.route('/expert_search',methods=['GET','POST'])
 def expert_search():
-    sesstr=''
     if request.method == 'GET':
         persongetid = request.args.get('id')
+        print(persongetid)
         if persongetid:
-            sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + str(persongetid) + ' RETURN p1,m,r1'
-            result = BuildMap().find_node_and_edge(sesstr)
-            return render_template('expert_search.html', result_json=json.dumps(result))
+            return render_template('expert_search.html', result_json=str(persongetid))
+            # sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + str(persongetid) + ' RETURN p1,m,r1'
+            # result = BuildMap().find_information(sesstr)
+            # return render_template('expert_search.html', result_json=json.dumps(result))
         else:
-            return render_template('expert_search.html')
-
-
+            return render_template('expert_search.html',result_json="")
     # return jsonify(elements=result)
 
-
-@app.route('/fast_get_rank',methods=['POST'])
-def fast_get_rank():
-    research_dir_list = request.form['research_dir'].split(',')  # 文字内容，是领域或者主题,用英文逗号隔开
-    arti_more_important=request.form['arti_more_important']
-    article_ra=article_time=patent_ra=referenced_count_rate=downloaded_count_rate=2
-    if arti_more_important:
-        article_ra=article_time=referenced_count_rate=downloaded_count_rate=8
-    else:
-        patent_ra=8
-    #函数封装
 
 @app.route('/get_ranking', methods=['POST'])
 def GetRanking():
@@ -49,15 +37,23 @@ def GetRanking():
     return jsonify(resList)
 
 @app.route('/draw_graph', methods=['GET', 'POST'])
-def draw_graph():
+def draw_graph():#页面不跳转，返回图谱节点和边
     """专家图谱信息"""
+    sesstr=''
     if request.method=='GET':
         person = str(request.args.get('name', ''))
+        id=str(request.args.get('id'))
         print(person)
+        print(id)
         if person:
             sesstr = 'MATCH (p1{name:"' + person + '"})-[r1:拥有]->(m) RETURN p1,m,r1'
-            result = BuildMap().find_node_and_edge(sesstr)
-            return jsonify(elements=result)
+
+        else:
+            sesstr = 'MATCH (p1)-[r1:拥有]->(m) where id(p1)=' + id + ' RETURN p1,m,r1'
+
+        result = BuildMap().find_node_and_edge(sesstr)
+        return jsonify(elements=result)
+
 
 
 

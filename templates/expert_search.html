@@ -13,9 +13,11 @@
     <script src="http://cdnjs.cloudflare.com/ajax/libs/qtip2/2.2.0/jquery.qtip.js"></script>
     <script src="/static/js/cytoscape-qtip.js"></script>
 
-    <script src="/static/js/expert_search.js"></script>
+
 </head>
 <body>
+<div id="dataid" d="{{result_json}}" style="display:none"></div>
+
 <!--<body style="text-align:center;">-->
 <!--导航栏-->
 <div class="nav">
@@ -53,8 +55,9 @@
     </div>
 
     <div id="cy"></div>
+
 </div>
 
-
+<script src="/static/js/expert_search.js"></script>
 </body>
 </html>

@@ -66,7 +66,7 @@ function send_zdyzb_post(flag) {
             $(".searchbtn").click(function () {
                 // window.location.href="expert_search"; //这是页面跳转方式
                 //在新窗口打开方式
-                window.open('expert_search?id=' + this.id.toString(), '', 'height=1200,width=1200,scrollbars=yes,status=yes');
+                window.open('expert_search?id=' + this.id.toString());
             });
         }, 'json');
 
