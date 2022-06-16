@@ -44,19 +44,7 @@ def fast_get_rank():
 
 @app.route('/get_ranking', methods=['POST'])
 def GetRanking():
-    research_dir_list = request.form['research_dir'].split(' ')  # 文字内容，是领域或者主题
-    # moren=request.form['moren']
-    article_ra = float(request.form['article_ra'])
-    article_time = request.form['article_time']
-    patent_ra = float(request.form['patent_ra'])
-    referenced_count_rate = request.form['referenced_count_rate']
-    downloaded_count_rate = request.form['downloaded_count_rate']
-    # pa_convertion_rate = request.form.get('pa_convertion_rate')
-    print()
-
-    # if moren==True:
-
-    resList=GetRank().get_rank(research_dir_list,article_ra,article_time,patent_ra,referenced_count_rate,downloaded_count_rate)
+    resList=GetRank().get_rank()
 
     return jsonify(resList)
 

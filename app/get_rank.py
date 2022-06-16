@@ -1,4 +1,6 @@
 import pandas as pd
+from flask import request
+
 from app.calcuscore import CalcuScore
 from app.config.settings import GRAPH, DRIVER
 
@@ -6,7 +8,18 @@ driver = DRIVER
 
 class GetRank():
 
-    def get_rank(self,research_dir_list,article_ra,article_time,patent_ra,referenced_count_rate,downloaded_count_rate):
+    def get_rank(self):
+        research_dir_list = request.form['research_dir'].split(' ')  # 文字内容，是领域或者主题
+        # moren=request.form['moren']
+        article_ra = float(request.form['article_ra'])
+        article_time = request.form['article_time']
+        patent_ra = float(request.form['patent_ra'])
+        referenced_count_rate = request.form['referenced_count_rate']
+        downloaded_count_rate = request.form['downloaded_count_rate']
+        show_people_sum = int(request.form['show_people_sum'])
+        # pa_convertion_rate = request.form.get('pa_convertion_rate')
+        print(show_people_sum)
+
         msglist = []
         # 2.获取输入的领域或者主题的全部文章节点
         with driver.session() as session:
@@ -62,7 +75,7 @@ class GetRank():
                              columns=['author_id', 'author_name', 'article_count', 'patent_count', 'referenced_count',
                                       'downloaded_count', 'pa_convertion_rate', 'ar_time_grades', 'author_college',
                                       'author_major', 'score'])
-        msgview = msgdf.sort_values(by='score', axis=0, ascending=False).head(10)  # axis=1表示对列操作,ascending=False表示降序排列
+        msgview = msgdf.sort_values(by='score', axis=0, ascending=False).head(show_people_sum)  # axis=1表示对列操作,ascending=False表示降序排列
         print(msgview)
 
         resList = []  # 需要的数据有：编号、作者、单位、专业、分数
