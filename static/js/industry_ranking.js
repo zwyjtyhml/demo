@@ -17,22 +17,22 @@ function send_zdyzb_post(flag) {
         if ($("input[name='drone']:checked").val() == "arti_more_important") {//重视文章成果
             dict = {
                 "research_dir": $("#research_dir").val(),
-                "article_ra": 8,
-                "article_time": 8,
-                "patent_ra": 2,
-                "referenced_count_rate": 8,
-                "downloaded_count_rate": 8,
+                "article_ra": 10,
+                "article_time": 10,
+                "patent_ra": 0.1,
+                "referenced_count_rate": 10,
+                "downloaded_count_rate": 10,
                 "show_people_sum":$("#show_people_sum").val(),
             }
         } else {
             //重视专利成果
             dict = {
                 "research_dir": $("#research_dir").val(),
-                "article_ra": 2,
-                "article_time": 2,
-                "patent_ra": 8,
-                "referenced_count_rate": 2,
-                "downloaded_count_rate": 2,
+                "article_ra": 0.1,
+                "article_time": 0.1,
+                "patent_ra": 10,
+                "referenced_count_rate": 0.1,
+                "downloaded_count_rate": 0.1,
                 "show_people_sum":$("#show_people_sum").val(),
             }
         }

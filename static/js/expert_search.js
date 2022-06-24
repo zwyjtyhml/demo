@@ -183,11 +183,11 @@ function draw(result) {
 //在cy2中画图
 function draw_as_add(result) {
     var cy = window.cy = cytoscape({
-        zoom: 1, // 图表的初始缩放级别.可以设置options.minZoom和options.maxZoom设置缩放级别的限制.
+        zoom: 0.8, // 图表的初始缩放级别.可以设置options.minZoom和options.maxZoom设置缩放级别的限制.
         pan: {x: 0, y: 0}, // 图表的初始平移位置.
         // interaction options:
-        minZoom: 0.5, // 图表缩放级别的最小界限.视口的缩放比例不能小于此缩放级别.
-        maxZoom: 3, // 图表缩放级别的最大界限.视口的缩放比例不能大于此缩放级别.
+        minZoom: 0.8, // 图表缩放级别的最小界限.视口的缩放比例不能小于此缩放级别.
+        maxZoom: 2, // 图表缩放级别的最大界限.视口的缩放比例不能大于此缩放级别.
         container: document.getElementById('cy2'),
         style: cytoscape.stylesheet()
             .selector('node[label = "person"]').css({
@@ -349,44 +349,25 @@ function show_information(result) {
         if (values.articles.length > 0) {
             $("#person" + values.id).append("<div class='per_articles' id=article" + values.id + ">文章：</div>");
             $(values.articles).each(function (i, v) {
-                $("#article" + values.id).append('<a href="' + v.date_url + '" class="link" style="color:blue">' + v.title + '</a>')
+                if (i > 0) {
+                    $("#article" + values.id).append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+                }
+                $("#article" + values.id).append('<a href="' + v.date_url + '" class="link" style="color:blue">[' + (i + 1).toString() + ']' + v.title + '[J].' + v.sourse + ',' + v.date + '</a></br>')
             });
         }
         if (values.patents.length > 0) {
             $("#person" + values.id).append("<div class='per_patents' id=patent" + values.id + ">专利：</div>");
             $(values.patents).each(function (i, v) {
+                if (i > 0) {
+                    $("#patent" + values.id).append('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;')
+                }
                 //专利数据目前没有url
-                $("#patent" + values.id).append('<a href="' + v.url + '" class="link" style="color:blue">' + v.title + '</a>')
+                $("#patent" + values.id).append('<a href="' + v.url + '" class="link" style="color:blue">[' + (i + 1).toString() + ']' + v.title + '[P].' + v.patent_applicant + '.' + v.publication_number + ',' + v.patent_date + '</a></br>')
             });
         }
     });
 }
 
-//	cy.elements().qtip
-//	({ //点击elements处的提醒
-//		content: {//function(){ return 'Example qTip on ele ' + this.id() },
-//			text:'lianjie',
-////			title:function(){ return '这是专利详情' + this.id() }\
-//            title:function(){return'详情'}
-//			},
-//		position: {
-//			my: 'top center',
-//			at: 'bottom center'
-//		},
-//		style: {
-//			classes: 'qtip-bootstrap',
-//			tip: {
-//				width: 16,
-//				height: 8
-//			}
-//		}
-//	});
-
-////监听节点的点击事件
-//    cy.on('tap','node',function(evt){
-//        var node =evt.target;
-//        console.log('这就是');
-//    })
 $(function () {
     // $("#person_info").hide();
 

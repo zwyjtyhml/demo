@@ -3,3 +3,12 @@
     height: 580px;
     background-color: #f9f9f9;
 }
+
+#cy2{
+    height: 500px;
+    width: 92%;
+    background-color: white;
+    /*圆角边框*/
+    border-radius: 20px;
+    margin: 30px;
+}
