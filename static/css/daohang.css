@@ -40,6 +40,19 @@
     /* border-right: 1px solid white; */
 }
 
+.li_one {
+    /*导航栏的每一个列*/
+    width: 600px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+    float: left;
+    /*background-color: cadetblue;*/
+    /*background-color: #dce9f9;*/
+    background-color: #CCDDFF;
+    /* border-right: 1px solid white; */
+}
+
 .li_one:hover {
     /*background-color: bisque;*/
     background-color: #B8B8DC;

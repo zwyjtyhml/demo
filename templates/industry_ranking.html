@@ -15,13 +15,13 @@
 <!--导航栏-->
 <div class="nav">
     <ul class="ul_one">
-        <li class="li_one">
+        <li class="li_one" id="li_one">
             <a href="/">行业专家排名</a>
             <ul class="ul_two">
                 <!--                <li><a href="#">1</a></li>-->
             </ul>
         </li>
-        <li class="li_one">
+        <li class="li_one" id="li_two">
             <a href="/expert_search">专家信息检索</a>
             <ul class="ul_two">
                 <!--                <li><a href="#">1</a></li>-->
@@ -40,11 +40,14 @@
     <div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         专家打分指标：
-        <input class="moren" type="radio" id="arti_more_important" name="drone" value="arti_more_important" checked>
+        <input class="moren" type="radio" id="arti_more_important" name="drone" value="arti_more_important">
         <label class="moren" for="arti_more_important">文章成果</label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <input class="moren" type="radio" id="pat_more_important" name="drone" value="pat_more_important">
         <label class="moren" for="pat_more_important">专利成果</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input class="moren" type="radio" id="arti_and_pat" name="drone" value="arti_and_pat" checked>
+        <label class="moren" for="arti_and_pat">文章和专利成果</label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="tooltip">
             <input class="zdyzb" type="submit" id="zidingyizhibiao" name="zidingyizhibiao" value="点击自定义权重比例">

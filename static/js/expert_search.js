@@ -370,7 +370,8 @@ function show_information(result) {
 
 $(function () {
     // $("#person_info").hide();
-
+    $("#li_two").css('background-color', '#B8B8DC');
+    // $("#li_one").css('background-color', '#CCDDFF');
     var data = document.getElementById('dataid').getAttribute('d');//绑定以获取data值
     if (data !== '') {
         //页面跳转而来的查询人物信息

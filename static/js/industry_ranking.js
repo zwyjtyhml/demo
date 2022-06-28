@@ -9,7 +9,7 @@ function send_zdyzb_post(flag) {
             "patent_ra": $("#patent_ra").val(),
             "referenced_count_rate": $("#referenced_count").val(),
             "downloaded_count_rate": $("#downloaded_count").val(),
-            "show_people_sum":$("#show_people_sum").val(),
+            "show_people_sum": $("#show_people_sum").val(),
         }
     } else {
         // console.log("--------------------------------")
@@ -22,9 +22,9 @@ function send_zdyzb_post(flag) {
                 "patent_ra": 0.1,
                 "referenced_count_rate": 10,
                 "downloaded_count_rate": 10,
-                "show_people_sum":$("#show_people_sum").val(),
+                "show_people_sum": $("#show_people_sum").val(),
             }
-        } else {
+        } else if ($("input[name='drone']:checked").val() == "pat_more_important") {
             //重视专利成果
             dict = {
                 "research_dir": $("#research_dir").val(),
@@ -33,7 +33,18 @@ function send_zdyzb_post(flag) {
                 "patent_ra": 10,
                 "referenced_count_rate": 0.1,
                 "downloaded_count_rate": 0.1,
-                "show_people_sum":$("#show_people_sum").val(),
+                "show_people_sum": $("#show_people_sum").val(),
+            }
+        } else {
+            //文章和专利成果
+            dict = {
+                "research_dir": $("#research_dir").val(),
+                "article_ra": 5,
+                "article_time": 5,
+                "patent_ra": 5,
+                "referenced_count_rate": 5,
+                "downloaded_count_rate": 5,
+                "show_people_sum": $("#show_people_sum").val(),
             }
         }
     }
@@ -73,7 +84,7 @@ function send_zdyzb_post(flag) {
 }
 
 $(function () {
-
+    $("#li_one").css('background-color', '#B8B8DC');
     // $(".zdyzb").hide();
     $("#zdyzbdiv").hide();//自定义指标隐藏
     $("#rank_tab").hide();
