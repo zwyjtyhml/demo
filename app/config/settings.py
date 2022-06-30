@@ -21,4 +21,11 @@ MYSQL_CONN=pymysql.Connect(
     charset='utf8'
 )
 
-# MYSQL_ZSTP_CONN=
+MYSQL_ZSTP_CONN=pymysql.Connect(
+    host='localhost',
+    port=3306,
+    user='root',
+    passwd='123456',
+    db='zstp',
+    charset='utf8'
+)
