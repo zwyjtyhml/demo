@@ -39,7 +39,11 @@ def article_review_and_entry():
     """数据审查与录入"""
     # article_spider中的专家信息录入到author_spider
     cursor = MYSQL_ZSTP_CONN.cursor()
-    select_str = "select artical_id,author ,author_college, author_major from article_spider group by author ,author_college, author_major;"
+    # select_str = "select artical_id,author ,author_college, author_major from article_spider group by author ,author_college, author_major;"
+    # 遗漏了录入作者有多篇文章的文章的专家id数据，因此需要对下面的数据再执行本方法一次。正常情况应该是删去上面str中的group by。
+    # select_str="select artical_id,author ,author_college, author_major from article_spider WHERE author_id is NULL"
+    # 正常情况如下
+    select_str = "select artical_id,author ,author_college, author_major from article_spider"
     cursor.execute(select_str)
     data = cursor.fetchall()
     for i in data:
@@ -61,15 +65,16 @@ def article_review_and_entry():
                 find_str = f'select id_new from author_spider where name="{escape_string(person_name)}"'
             cursor.execute(find_str)
             data2 = cursor.fetchone()
-            if not data2:#找不到就是none_type
+            if not data2:  # 找不到就是none_type
                 # 专家表中没有这名专家的信息，需要插入
                 cursor.execute('insert into author_spider(name,major,college) values (("%s"),("%s"),("%s"))' % (
                     escape_string(person_name), escape_string(i[3]), escape_string(i[2])))
                 MYSQL_ZSTP_CONN.commit()
                 print(f"{person_name}插入专家数据库成果成功")
                 # 查询该作者的id，进行添加到ids_str
-                cursor.execute(f'select id_new from author_spider where name="{escape_string(person_name)}" and major="{escape_string(i[3])}" and college="{escape_string(i[2])}"')
-                data3=cursor.fetchone()
+                cursor.execute(
+                    f'select id_new from author_spider where name="{escape_string(person_name)}" and major="{escape_string(i[3])}" and college="{escape_string(i[2])}"')
+                data3 = cursor.fetchone()
                 if ids_str != '':
                     ids_str += ';'
                 ids_str += str(data3[0])
@@ -77,10 +82,43 @@ def article_review_and_entry():
                 if ids_str != '':
                     ids_str += ';'
                 ids_str += str(data2[0])
-            up_str='update article_spider set author_id="%s" where artical_id=%d' % (ids_str, i[0])
+            up_str = 'update article_spider set author_id="%s" where artical_id=%d' % (ids_str, i[0])
             cursor.execute(up_str)
             MYSQL_ZSTP_CONN.commit()
             print(f"文章id:{i[0]}关联专家{person_name}成功")
+
+    cursor.close()
+    MYSQL_ZSTP_CONN.close()
+
+
+def patent_review_and_entry():
+    """专利表的审查与录入"""
+    # 对专利表进行审查修改，对author_id进行更新，如果在专家表中没有找到id（zw）则进行插入，并自动生成new_id
+    cursor = MYSQL_ZSTP_CONN.cursor()
+    cursor.execute("select id,author_id from patent_spider")
+    patent_da = cursor.fetchall()
+    for patent in patent_da:
+        new_author_id = ''
+        author_id_list = patent[1].split(',')
+        for id in author_id_list:
+            sel_str = 'select id_new from author_spider where id="%s"' % (id,)
+            cursor.execute(sel_str)
+            new_id = cursor.fetchone()
+            if new_author_id != '':
+                new_author_id += ';'
+            if new_id:  # 在专家表找到了该专家旧id
+                new_author_id += str(new_id[0])
+            else:
+                # 没有找到，在专家表中插入一条数据，填入旧id，搜索返回new_id
+                cursor.execute('insert into author_spider(id) values ("%s")' % (id,))
+                MYSQL_ZSTP_CONN.commit()
+                print(f"{id}插入专家数据库成功")
+                cursor.execute('select id_new from author_spider where id="%s"' % (id,))
+                new_author_id += str(cursor.fetchone()[0])
+        upstr = 'update patent_spider set author_id="%s" where id=%d' % (new_author_id, patent[0])
+        cursor.execute(upstr)
+        MYSQL_ZSTP_CONN.commit()
+        print(f"专利id:{patent[0]}关联专家(id:{new_author_id})成功")
 
     cursor.close()
     MYSQL_ZSTP_CONN.close()
@@ -90,3 +128,4 @@ if __name__ == '__main__':
     # 数据处理为一次性工作
     # data_clean()
     article_review_and_entry()
+    # patent_review_and_entry()
