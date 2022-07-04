@@ -1,3 +1,5 @@
+from pymysql.converters import escape_string
+
 from app.config.settings import MYSQL_ZSTP_CONN
 
 
@@ -33,7 +35,7 @@ def data_clean():
     MYSQL_ZSTP_CONN.close()
 
 
-def review_and_entry():
+def article_review_and_entry():
     """数据审查与录入"""
     # article_spider中的专家信息录入到author_spider
     cursor = MYSQL_ZSTP_CONN.cursor()
@@ -44,80 +46,42 @@ def review_and_entry():
         person_list = []
         if ';' in i[1]:
             person_list = i[1].split(';')
-            # if i[2] or i[3]:
-            #     print('多位作者且author_college, author_major有数据')
-            #     for person in person_list:
-            #         find_people_str = f'select id_new from author_spider where name="{person}" and major="{i[3]}" and college="{i[2]}"'
-            #         cursor.execute(find_people_str)
-            #         if len(cursor.fetchall()) == 0:
-            #             insert_str = f"insert into author_spider(name,major,college) values ('{person}','{i[3]}','{i[2]}')"
-            #             cursor.execute(insert_str)
-            #             print(f'{person}已录入专家数据库')
-            #             findstr=f'select id_new from author_spider where name="{person}" and major="{i[3]}" and college="{i[2]}"'
-            #             cursor.execute(findstr)
-            #             default_id = cursor.fetchone()[0]
-            #             print(default_id)
-            #         else:
-            #             default_id=cursor.fetchone()[0]
-            #             print(default_id)
-            #
-            # else:
-            #     print('多位作者且author_college, author_major无数据')
-            #     for person in person_list:
-            #         find_people_str = f'select id_new from author_spider where name="{person}";'
-            #         cursor.execute(find_people_str)
-            #         print(cursor.fetchall())
-            #         if len(cursor.fetchall()) == 0:
-            #             insert_str = f"insert into author_spider(name,major,college) values ('{person}','','')"
-            #             cursor.execute(insert_str)
-            #             print(f'{person}已录入专家数据库')
-            #             findstr=f'select id_new from author_spider where name="{person}";'
-            #             cursor.execute(findstr)
-            #             default_id = cursor.fetchone()[0]
-            #             print(default_id)
-            #         else:
-            #             default_id = cursor.fetchall()
-            #             print(default_id)
         else:
             person_list.append(i[1])
-            # find_people_str=f'select id_new from author_spider where name="{i[1]}" and major="{i[3]}" and college="{i[2]}"'
-            # # print(find_people_str)
-            # try:
-            #     cursor.execute(find_people_str)
-            #     if len(cursor.fetchall()) == 0:
-            #         insert_str = f"insert into author_spider(name,major,college) values ('{i[1]}','{i[3]}','{i[2]}')"
-            #         cursor.execute(insert_str)
-            #         print(f'{i[1]}已录入专家数据库')
-            #         findstr=find_people_str
-            #         cursor.execute(findstr)
-            #         default_id = cursor.fetchone()[0]
-            #         print(default_id)
-            #     else:
-            #         default_id = cursor.fetchone()[0]
-            #         print(default_id)
-            # except:
-            #     # 处理异常数据
-            #     print('查询人物失败')
+        ids_str = ''
         for person_name in person_list:
-            print(f'{person_name}--{i[2]}--{i[3]}')
-            if i[2] or i[3]:#有学校和专业信息
-                find_str=f'select id_new from author_spider where name="{person_name}" and major="{i[3]}" and college="{i[2]}"'
-            elif i[2]:
-                find_str = f'select id_new from author_spider where name="{person_name}" and college="{i[2]}"'
-            elif i[3]:
-                find_str=f'select id_new from author_spider where name="{person_name}" and major="{i[3]}"'
+            # print(f'{person_name}--{i[2]}--{i[3]}')
+            if i[2] or i[3]:  # 有学校和专业信息
+                find_str = f'select id_new from author_spider where name="{escape_string(person_name)}" and major="{escape_string(i[3])}" and college="{escape_string(i[2])}"'
+            elif i[2]:  # 只有学校信息
+                find_str = f'select id_new from author_spider where name="{escape_string(person_name)}" and college="{escape_string(i[2])}"'
+            elif i[3]:  # 只有专业信息
+                find_str = f'select id_new from author_spider where name="{escape_string(person_name)}" and major="{escape_string(i[3])}"'
             else:
-                find_str = f'select id_new from author_spider where name="{person_name}"'
+                find_str = f'select id_new from author_spider where name="{escape_string(person_name)}"'
             cursor.execute(find_str)
-            if len(cursor.fetchall()) == 0:
+            data2 = cursor.fetchone()
+            if not data2:#找不到就是none_type
                 # 专家表中没有这名专家的信息，需要插入
-                insert_str = f"insert into author_spider(name,major,college) values ('{person_name}','{i[3]}','{i[2]}')"
-
+                cursor.execute('insert into author_spider(name,major,college) values (("%s"),("%s"),("%s"))' % (
+                    escape_string(person_name), escape_string(i[3]), escape_string(i[2])))
+                MYSQL_ZSTP_CONN.commit()
+                print(f"{person_name}插入专家数据库成果成功")
+                # 查询该作者的id，进行添加到ids_str
+                cursor.execute(f'select id_new from author_spider where name="{escape_string(person_name)}" and major="{escape_string(i[3])}" and college="{escape_string(i[2])}"')
+                data3=cursor.fetchone()
+                if ids_str != '':
+                    ids_str += ';'
+                ids_str += str(data3[0])
             else:
-                print(cursor.feltchall())
+                if ids_str != '':
+                    ids_str += ';'
+                ids_str += str(data2[0])
+            up_str='update article_spider set author_id="%s" where artical_id=%d' % (ids_str, i[0])
+            cursor.execute(up_str)
+            MYSQL_ZSTP_CONN.commit()
+            print(f"文章id:{i[0]}关联专家{person_name}成功")
 
-
-    MYSQL_ZSTP_CONN.commit()
     cursor.close()
     MYSQL_ZSTP_CONN.close()
 
@@ -125,4 +89,4 @@ def review_and_entry():
 if __name__ == '__main__':
     # 数据处理为一次性工作
     # data_clean()
-    review_and_entry()
+    article_review_and_entry()
