@@ -28,14 +28,18 @@ def article_spider_data_clean():
     # 与periodical_division的方法不同，不借助python数组
     cursor = MYSQL_ZSTP_CONN.cursor()
     # 需要在终端设置only_full_group_by，否则会报错，参考https://blog.csdn.net/qq_39954916/article/details/120123550?spm=1001.2014.3001.5506
-    select_repeat_sql_str = "select * from(select * ,count(*) as countnumber from article_spider group by title ,author ,author_college, author_major) as A where countnumber >1"
-    cursor.execute(select_repeat_sql_str)
-    data = cursor.fetchall()
-    for i in data:
-        # delete_str=f'delete from article_spider where id={i[1]};'      SELECT * FROM article_spider WHERE title="基于光电容积描记法的多路肌肉收缩传感系统" and author="黄建平" and author_college="莆田学院" and author_major =
-        print(i)
+    cursor.execute("select * from(select * ,count(*) as countnumber from article_spider group by title ,date ,author_id) as A where countnumber >1;")
+    data = cursor.fetchall()# 里面的记录为有重复数据的行，数据本身不重复
+    for item in data:
+        title=item[0]
+        date=item[5]
+        article_id=item[6]
+        author_ids=item[8]
+        count=item[9]
+        cursor.execute('delete from article_spider where title="%s" and date="%s" and author_id="%s" and artical_id<>%d'%(escape_string(title),date,author_ids,article_id))
+        MYSQL_ZSTP_CONN.commit()
+        print(f"完成文章：{title} 重复项的删除")
 
-    MYSQL_ZSTP_CONN.commit()
     cursor.close()
     MYSQL_ZSTP_CONN.close()
 
