@@ -134,7 +134,7 @@ def patent_review_and_entry():
 
 
 def patent_spider_data_clean():
-    # 去除patent_spider的重复数据（title重复的就对比author和author_college和author_major）
+    # 去除patent_spider的重复数据
     cursor = MYSQL_ZSTP_CONN.cursor()
     # 需要在终端设置only_full_group_by，否则会报错，参考https://blog.csdn.net/qq_39954916/article/details/120123550?spm=1001.2014.3001.5506
     cursor.execute(
@@ -155,11 +155,24 @@ def patent_spider_data_clean():
     MYSQL_ZSTP_CONN.close()
 
 
+def author_spider_data_clean():
+    cursor = MYSQL_ZSTP_CONN.cursor()
+    # 先对有名字的去重
+    cursor.execute(
+        "select * from(select * ,count(*) as countnumber from author_spider where name is NOT null and name<>"" group by id,name ,major ,college) as A where countnumber >1;")
+    data = cursor.fetchall()  # 里面的记录为有重复数据的行，数据本身不重复
+    if len(data)==0:
+        print("无重复数据")
+
+    cursor.close()
+    MYSQL_ZSTP_CONN.close()
+
+
 if __name__ == '__main__':
     # 数据处理为一次性工作
     # periodical_division_data_clean()
     # article_review_and_entry()
     # patent_review_and_entry()
     # article_spider_data_clean()
-    patent_spider_data_clean()
-    
+    # patent_spider_data_clean()
+    author_spider_data_clean()
