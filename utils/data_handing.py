@@ -133,9 +133,33 @@ def patent_review_and_entry():
     MYSQL_ZSTP_CONN.close()
 
 
+def patent_spider_data_clean():
+    # 去除patent_spider的重复数据（title重复的就对比author和author_college和author_major）
+    cursor = MYSQL_ZSTP_CONN.cursor()
+    # 需要在终端设置only_full_group_by，否则会报错，参考https://blog.csdn.net/qq_39954916/article/details/120123550?spm=1001.2014.3001.5506
+    cursor.execute(
+        "select * from(select * ,count(*) as countnumber from patent_spider group by title ,patent_number ,author_id) as A where countnumber >1;")
+    data = cursor.fetchall()  # 里面的记录为有重复数据的行，数据本身不重复
+    for item in data:
+        title = item[0]
+        patent_number = item[2]
+        patent_id = item[13]
+        author_ids = item[12]
+        cursor.execute(
+            'delete from patent_spider where title="%s" and patent_number="%s" and author_id="%s" and id<>%d' % (
+            escape_string(title), patent_number, author_ids, patent_id))
+        MYSQL_ZSTP_CONN.commit()
+        print(f"完成专利：{title} 重复项的删除")
+
+    cursor.close()
+    MYSQL_ZSTP_CONN.close()
+
+
 if __name__ == '__main__':
     # 数据处理为一次性工作
     # periodical_division_data_clean()
     # article_review_and_entry()
     # patent_review_and_entry()
-    article_spider_data_clean()
+    # article_spider_data_clean()
+    patent_spider_data_clean()
+    
