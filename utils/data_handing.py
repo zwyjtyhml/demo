@@ -11,10 +11,10 @@ def periodical_division_data_clean():
     sql = "SELECT jurnalName,id from periodical_division"
     cursor.execute(sql)
     data = cursor.fetchall()
-    exist_name=[]
+    exist_name = []
     for i in data:
         if i[0] in exist_name:
-            sql_delete=f'delete from periodical_division where id={i[1]};'
+            sql_delete = f'delete from periodical_division where id={i[1]};'
             cursor.execute(sql_delete)
             print(f"已删除{i}")
         else:
@@ -23,20 +23,24 @@ def periodical_division_data_clean():
     cursor.close()
     MYSQL_ZSTP_CONN.close()
 
+
 def article_spider_data_clean():
     # 去除article_spider的重复数据（title重复的就对比author和author_college和author_major）
     # 与periodical_division的方法不同，不借助python数组
     cursor = MYSQL_ZSTP_CONN.cursor()
     # 需要在终端设置only_full_group_by，否则会报错，参考https://blog.csdn.net/qq_39954916/article/details/120123550?spm=1001.2014.3001.5506
-    cursor.execute("select * from(select * ,count(*) as countnumber from article_spider group by title ,date ,author_id) as A where countnumber >1;")
-    data = cursor.fetchall()# 里面的记录为有重复数据的行，数据本身不重复
+    cursor.execute(
+        "select * from(select * ,count(*) as countnumber from article_spider group by title ,date ,author_id) as A where countnumber >1;")
+    data = cursor.fetchall()  # 里面的记录为有重复数据的行，数据本身不重复
     for item in data:
-        title=item[0]
-        date=item[5]
-        article_id=item[6]
-        author_ids=item[8]
-        count=item[9]
-        cursor.execute('delete from article_spider where title="%s" and date="%s" and author_id="%s" and artical_id<>%d'%(escape_string(title),date,author_ids,article_id))
+        title = item[0]
+        date = item[5]
+        article_id = item[6]
+        author_ids = item[8]
+        count = item[9]
+        cursor.execute(
+            'delete from article_spider where title="%s" and date="%s" and author_id="%s" and artical_id<>%d' % (
+                escape_string(title), date, author_ids, article_id))
         MYSQL_ZSTP_CONN.commit()
         print(f"完成文章：{title} 重复项的删除")
 
@@ -147,7 +151,7 @@ def patent_spider_data_clean():
         author_ids = item[12]
         cursor.execute(
             'delete from patent_spider where title="%s" and patent_number="%s" and author_id="%s" and id<>%d' % (
-            escape_string(title), patent_number, author_ids, patent_id))
+                escape_string(title), patent_number, author_ids, patent_id))
         MYSQL_ZSTP_CONN.commit()
         print(f"完成专利：{title} 重复项的删除")
 
@@ -161,8 +165,50 @@ def author_spider_data_clean():
     cursor.execute(
         "select * from(select * ,count(*) as countnumber from author_spider where name is NOT null and name<>"" group by id,name ,major ,college) as A where countnumber >1;")
     data = cursor.fetchall()  # 里面的记录为有重复数据的行，数据本身不重复
-    if len(data)==0:
+    if len(data) == 0:
         print("无重复数据")
+
+    cursor.close()
+    MYSQL_ZSTP_CONN.close()
+
+
+def insert_author_achi_sum():
+    # 向专家表写入专家的文章数目和专利数目
+    cursor = MYSQL_ZSTP_CONN.cursor()
+    # 先对空文章值进行计算填补
+    cursor.execute('SELECT id_new,artical from author_spider')
+    data = cursor.fetchall()
+    for item in data:
+        # print(item[1])# 存在''和None
+        if item[1] == '' or item[1] == None:
+            # 计算数据库中该作者的文章数
+            cursor.execute('SELECT artical_id,author_id from article_spider')
+            data2 = cursor.fetchall()
+            sum = 0
+            for i in data2:
+                author_id_list = [int(j) for j in i[1].split(';')]
+                if item[0] in author_id_list:
+                    sum += 1
+                    print(f'找到作者{item[0]}的第{sum}篇文章：{i[0]}')
+            cursor.execute('update author_spider set article_sum=%d where id_new=%d' % (sum, item[0]))
+            MYSQL_ZSTP_CONN.commit()
+        else:
+            # 直接把artical的值提取到article_sum中
+            artical_sum = int(item[1])
+            # set 不支持对多个变量赋值
+            cursor.execute('update author_spider set article_sum=%d where id_new=%d' % (artical_sum, item[0]))
+            MYSQL_ZSTP_CONN.commit()
+        # 计算专利表中作者的专利数量
+        cursor.execute('SELECT id,author_id from patent_spider')
+        data3 = cursor.fetchall()
+        patent_sum = 0
+        for i in data3:
+            author_id_list = [int(j) for j in i[1].split(';')]
+            if item[0] in author_id_list:
+                patent_sum += 1
+                print(f'找到作者{item[0]}的第{patent_sum}篇专利：{i[0]}')
+        cursor.execute('update author_spider set patent_sum=%d where id_new=%d' % (patent_sum, item[0]))
+        MYSQL_ZSTP_CONN.commit()
 
     cursor.close()
     MYSQL_ZSTP_CONN.close()
@@ -175,4 +221,5 @@ if __name__ == '__main__':
     # patent_review_and_entry()
     # article_spider_data_clean()
     # patent_spider_data_clean()
-    author_spider_data_clean()
+    # author_spider_data_clean()
+    insert_author_achi_sum()
